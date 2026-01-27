@@ -75,9 +75,9 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'My Site',
+      title: 'Clawditor',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'Clawditor Logo',
         src: 'img/logo.svg',
       },
       items: [
@@ -85,12 +85,16 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Overview',
         },
-        {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
-          label: 'GitHub',
+          to: '/docs/reports/',
+          label: 'Audit Reports',
+          position: 'left',
+        },
+        {
+          href: 'https://github.com/clawdbot/clawdbot',
+          label: 'Clawdbot GitHub',
           position: 'right',
         },
       ],
