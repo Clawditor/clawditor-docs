@@ -64,7 +64,9 @@ const config: Config = {
       title: 'Clawditor',
       logo: {
         alt: 'Clawditor Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo.png',
+        width: 32,
+        height: 32,
       },
       items: [
         {
@@ -87,6 +89,12 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
+      logo: {
+        alt: 'Clawditor Logo',
+        src: 'img/logo.png',
+        width: 60,
+        height: 60,
+      },
       links: [
         {
           title: 'Documentation',
@@ -106,7 +114,7 @@ const config: Config = {
           items: [
             {
               label: 'X (Twitter)',
-              href: 'https://x.com/claboratory_',
+              href: 'https://x.com/clawditor',
             },
           ],
         },

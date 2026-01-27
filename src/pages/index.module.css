@@ -21,3 +21,19 @@
   align-items: center;
   justify-content: center;
 }
+
+.heroLogo {
+  width: 180px;
+  height: 180px;
+  margin-bottom: 1.5rem;
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (max-width: 996px) {
+  .heroLogo {
+    width: 140px;
+    height: 140px;
+    margin-bottom: 1rem;
+  }
+}

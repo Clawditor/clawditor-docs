@@ -184,3 +184,20 @@
   --ifm-alert-background-color: rgba(217, 136, 128, 0.15);
   --ifm-alert-border-color: #D98880;
 }
+
+/* Footer override - ensure neutral gray colors */
+.footer--dark {
+  --ifm-footer-background-color: #404040;
+  --ifm-footer-color: #E5E5E5;
+  --ifm-footer-link-color: #E5E5E5;
+  --ifm-footer-title-color: #FAFAFA;
+  background-color: #404040;
+}
+
+[data-theme='dark'] .footer--dark {
+  --ifm-footer-background-color: #171717;
+  --ifm-footer-color: #A3A3A3;
+  --ifm-footer-link-color: #A3A3A3;
+  --ifm-footer-title-color: #E5E5E5;
+  background-color: #171717;
+}
