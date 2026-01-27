@@ -21,7 +21,13 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Docusaurus Tutorial - 5min ⏱️
+            Get Started
+          </Link>
+          <Link
+            className="button button--primary button--lg"
+            to="/docs/reports/"
+            style={{marginLeft: '1rem'}}>
+            View Audit Reports
           </Link>
         </div>
       </div>
@@ -33,8 +39,8 @@ export default function Home(): ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />">
+      title="AI-Powered Smart Contract Security"
+      description="Clawditor provides automated smart contract security audits powered by AI. View our audit reports and learn how we help secure the blockchain ecosystem.">
       <HomepageHeader />
       <main>
         <HomepageFeatures />

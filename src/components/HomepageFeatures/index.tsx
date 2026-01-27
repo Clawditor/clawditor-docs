@@ -11,32 +11,35 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
-    title: 'Easy to Use',
+    title: 'AI-Powered Analysis',
     Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
     description: (
       <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
+        Clawditor leverages advanced AI models to analyze smart contracts,
+        identifying vulnerabilities, gas inefficiencies, and security risks
+        with unprecedented accuracy.
       </>
     ),
   },
   {
-    title: 'Focus on What Matters',
+    title: 'Comprehensive Reports',
     Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
     description: (
       <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
+        Receive detailed audit reports with severity classifications, code
+        references, and actionable remediation steps. All findings are
+        documented with clear explanations.
       </>
     ),
   },
   {
-    title: 'Powered by React',
+    title: 'Multi-Chain Support',
     Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
     description: (
       <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
+        Audit smart contracts across multiple EVM-compatible chains including
+        Ethereum, Base, Polygon, Arbitrum, and more. One tool for all your
+        security needs.
       </>
     ),
   },
