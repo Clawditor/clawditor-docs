@@ -4,27 +4,183 @@
  * work well for content-centric websites.
  */
 
+/*
+ * Clawditor Theme - Pastel Crab & Lobster Colors with Slate Accents
+ * Inspired by the soft coral, salmon, and peachy tones of crustaceans
+ */
+
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  /* Primary: Pastel coral/lobster shell color */
+  --ifm-color-primary: #D98880;
+  --ifm-color-primary-dark: #D07068;
+  --ifm-color-primary-darker: #C96059;
+  --ifm-color-primary-darkest: #B84A42;
+  --ifm-color-primary-light: #E2A098;
+  --ifm-color-primary-lighter: #E9B0A9;
+  --ifm-color-primary-lightest: #F5CBA7;
+
+  /* Slate/Grey accents */
+  --ifm-background-color: #FAFAFA;
+  --ifm-navbar-background-color: #5D6D7E;
+  --ifm-navbar-link-color: #F5F5F5;
+  --ifm-navbar-link-hover-color: #F5CBA7;
+  --ifm-footer-background-color: #4A5568;
+  --ifm-footer-link-color: #E2E8F0;
+  --ifm-footer-link-hover-color: #F5CBA7;
+
+  /* Hero and heading colors */
+  --ifm-heading-color: #2D3748;
+  --ifm-font-color-base: #4A5568;
+
+  /* Code styling */
   --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --docusaurus-highlighted-code-line-bg: rgba(217, 136, 128, 0.15);
+
+  /* Link colors */
+  --ifm-link-color: #C0392B;
+  --ifm-link-hover-color: #922B21;
+
+  /* Menu and sidebar */
+  --ifm-menu-color-active: #D98880;
+  --ifm-menu-color-background-active: rgba(217, 136, 128, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* Primary: Light peachy coral for dark backgrounds */
+  --ifm-color-primary: #F5A89A;
+  --ifm-color-primary-dark: #F19586;
+  --ifm-color-primary-darker: #EF8B7A;
+  --ifm-color-primary-darkest: #E86D5B;
+  --ifm-color-primary-light: #F9BBAE;
+  --ifm-color-primary-lighter: #FBCABA;
+  --ifm-color-primary-lightest: #FDE5DF;
+
+  /* Dark slate backgrounds */
+  --ifm-background-color: #1A202C;
+  --ifm-background-surface-color: #2D3748;
+  --ifm-navbar-background-color: #2D3748;
+  --ifm-navbar-link-color: #E2E8F0;
+  --ifm-navbar-link-hover-color: #F5A89A;
+  --ifm-footer-background-color: #1A202C;
+  --ifm-footer-link-color: #A0AEC0;
+  --ifm-footer-link-hover-color: #F5A89A;
+
+  /* Text colors for dark mode */
+  --ifm-heading-color: #F7FAFC;
+  --ifm-font-color-base: #E2E8F0;
+
+  /* Code styling */
+  --docusaurus-highlighted-code-line-bg: rgba(245, 168, 154, 0.2);
+
+  /* Link colors */
+  --ifm-link-color: #F5A89A;
+  --ifm-link-hover-color: #FDE5DF;
+
+  /* Menu and sidebar */
+  --ifm-menu-color-active: #F5A89A;
+  --ifm-menu-color-background-active: rgba(245, 168, 154, 0.15);
+
+  /* Card and content backgrounds */
+  --ifm-card-background-color: #2D3748;
+  --ifm-toc-border-color: #4A5568;
+}
+
+/* Navbar title styling */
+.navbar__title {
+  color: #F5F5F5;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .navbar__title {
+  color: #F7FAFC;
+}
+
+/* Hero banner gradient with crab/lobster pastel tones */
+.hero--primary {
+  background: linear-gradient(135deg, #D98880 0%, #E6A59A 50%, #F5CBA7 100%);
+}
+
+[data-theme='dark'] .hero--primary {
+  background: linear-gradient(135deg, #2D3748 0%, #4A5568 50%, #5D6D7E 100%);
+}
+
+/* Button styling */
+.button--primary {
+  background-color: #D98880;
+  border-color: #D98880;
+}
+
+.button--primary:hover {
+  background-color: #C96059;
+  border-color: #C96059;
+}
+
+[data-theme='dark'] .button--primary {
+  background-color: #F5A89A;
+  border-color: #F5A89A;
+  color: #1A202C;
+}
+
+[data-theme='dark'] .button--primary:hover {
+  background-color: #F19586;
+  border-color: #F19586;
+}
+
+/* Secondary button outline */
+.button--secondary {
+  color: #5D6D7E;
+  border-color: #5D6D7E;
+}
+
+.button--secondary:hover {
+  background-color: #5D6D7E;
+  color: #FFFFFF;
+}
+
+[data-theme='dark'] .button--secondary {
+  color: #A0AEC0;
+  border-color: #A0AEC0;
+}
+
+[data-theme='dark'] .button--secondary:hover {
+  background-color: #4A5568;
+  color: #F7FAFC;
+}
+
+/* Table of contents hover */
+.table-of-contents__link:hover,
+.table-of-contents__link--active {
+  color: #D98880;
+}
+
+[data-theme='dark'] .table-of-contents__link:hover,
+[data-theme='dark'] .table-of-contents__link--active {
+  color: #F5A89A;
+}
+
+/* Breadcrumb styling */
+.breadcrumbs__link {
+  color: #5D6D7E;
+}
+
+[data-theme='dark'] .breadcrumbs__link {
+  color: #A0AEC0;
+}
+
+/* Admonition/alert customization */
+.alert--info {
+  --ifm-alert-background-color: rgba(93, 109, 126, 0.1);
+  --ifm-alert-border-color: #5D6D7E;
+}
+
+.alert--warning {
+  --ifm-alert-background-color: rgba(245, 203, 167, 0.2);
+  --ifm-alert-border-color: #F5CBA7;
+}
+
+.alert--danger {
+  --ifm-alert-background-color: rgba(217, 136, 128, 0.15);
+  --ifm-alert-border-color: #D98880;
 }

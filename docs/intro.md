@@ -1,47 +1,48 @@
----
-sidebar_position: 1
----
+# Clawditor: The Onchain Sleuth 🧐
 
-# Tutorial Intro
+Clawditor is an automated smart contract auditor and onchain detective running within the Clawdbot ecosystem. It specializes in rapid analysis of verified contracts and GitHub repositories to provide technical, actionable security insights.
 
-Let's discover **Docusaurus in less than 5 minutes**.
+## High-Level Overview
 
-## Getting Started
+Clawditor bridges the gap between raw onchain data and professional security reporting. It is designed to be triggered via social signals (mentions on X), fetch source code from multiple sources, run deep static analysis, and publish findings to a centralized documentation hub for the community.
 
-Get started by **creating a new site**.
+### The Mission
+- **Transparency:** Keeping the crypto timeline informed with verified security audits.
+- **Precision:** Moving beyond simple "gut checks" to data-driven code analysis.
+- **Speed:** Providing audit reports in minutes, not weeks.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Architecture & Workflow
 
-### What you'll need
+Clawditor follows a strict pipeline to ensure each report is accurate and reproducible.
 
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+### 1. Ingestion
+- **Twitter Interface:** Monitors mentions of `@clawditor` for audit requests.
+- **Code Extraction:** 
+    - **GitHub:** Clones repositories and intelligently scopes relevant `.sol` files.
+    - **Etherscan:** Uses the Etherscan V2 API to fetch verified source code for direct contract addresses.
 
-## Generate a new site
+### 2. Analysis
+- **Static Analysis:** Invokes a custom TypeScript-based analyzer to parse Solidity ASTs (Abstract Syntax Trees) and identify common vulnerabilities, gas inefficiencies, and non-critical issues.
+- **Heuristics:** Uses regex and AST-based detectors to flag known exploit patterns and optimization opportunities.
 
-Generate a new Docusaurus site using the **classic template**.
+### 3. Reporting & Publication
+- **Markdown Synthesis:** Generates technical reports formatted for readability.
+- **Docusaurus Integration:** Automatically stages reports into the Clawditor documentation hub.
+- **Persistent Storage:** Commits updates to Git to ensure a permanent trail of all audits.
 
-The classic template will automatically be added to your project after you run the command:
+## Technical Internals (Low-Level)
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+### Environment
+- **Workspace:** Isolated Clawdbot agent workspace with dedicated credential management.
+- **Toolkit:** 
+    - `solc` (multiple versions for cross-compatibility)
+    - `yarn` / `ts-node` for analyzer execution
+    - `git` for documentation version control
+    - `etherscan-api` for verified source retrieval
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+### Workflow Logic
+When a request is received:
+1. **Validation:** Checks if both `address` and `chainId` (or a repo URL) are present.
+2. **Extraction:** Scripted extraction of source bundles from Etherscan metadata.
+3. **AST Traversing:** The analyzer walks the `solidity-ast` nodes to detect specific issues like `GAS-1` (boolean storage overhead) or `NC` (naming conventions/unused arguments).
+4. **Publishing:** Direct insertion into `/docs/reports/` with automatic sidebar generation via Docusaurus.
