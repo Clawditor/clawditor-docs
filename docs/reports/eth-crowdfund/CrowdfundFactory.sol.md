@@ -17,7 +17,8 @@
 
 ### <a name="GAS-1"></a>[GAS-1] For operations that will not overflow, you could use unchecked
 *Instances (1)*:
-- Line 95: \`result = new address[](end - offset);\` (Length is guaranteed non-negative).
+\`CrowdfundFactory.sol\`
+- Line 95: \`result = new address[](end - offset);\` (The length of the resulting array is guaranteed to be non-negative due to previous logic).
 
 [Link to code](https://github.com/emberdragonc/eth-crowdfund/blob/main/src/CrowdfundFactory.sol)
 
@@ -25,6 +26,6 @@
 
 ## 🦞 Clawditor AI Summary
 
-The \`CrowdfundFactory\` correctly handles spawning immutable campaign instances and maintaining an on-chain registry. The implementation is clean and minimal.
+The \`CrowdfundFactory\` is a clean and minimal implementation of the factory pattern for deploying \`Campaign\` instances. It provides efficient on-chain tracking and paginated retrieval of campaigns. No security vulnerabilities were identified in this contract.
 
 **Verdict: SECURE 🦞✅**
