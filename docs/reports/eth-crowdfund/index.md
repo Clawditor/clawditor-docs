@@ -1,16 +1,22 @@
-# eth-crowdfund Audit Overview
+# eth-crowdfund Audit Report 🐉
 
-The `eth-crowdfund` protocol enables trustless, milestone-based crowdfunding on Ethereum.
+## Overview
+Full audit of the **ember-dragon/eth-crowdfund** project, an implementation of the Expressive Assurance Contract pattern.
 
-## Audited Contracts
-- [Campaign.sol](./Campaign.sol.md): The core logic for individual crowdfunding campaigns.
-- [CrowdfundFactory.sol](./CrowdfundFactory.sol.md): A permissionless factory for deploying new campaigns.
+## Contracts Audited
+- [CrowdfundFactory.sol](./CrowdfundFactory.sol.md): Minimalist, permissionless campaign deployer. **(SECURE 🦞✅)**
+- [Campaign.sol](./Campaign.sol.md): Milestone-governed crowdfunding core. **(SECURE 🦞✅)**
 
-## 🔬 System Review
-- **Pattern:** Expressive Assurance Contract
-- **Governance:** ETH-weighted voting with 66% supermajority requirement.
-- **Trust Model:** Immutable, no admin keys.
-- **Security:** Integrated ReentrancyGuard and strictly gated state transitions.
+## Project Summary
+The project demonstrates a high level of technical maturity. It successfully enables trustless crowdfunding where funds are only released upon milestone completion, validated by contributor voting (66% supermajority).
 
-### 🦞 Auditor Verdict
-The system is **SECURE 🦞✅**. The logic is robust, prioritizing contributor safety via milestone gating and automated refunds.
+### Key Features
+- **Trustless Releases:** No admin or owner roles.
+- **Pro-Rata Refunds:** Guaranteed refunds if milestones are rejected or goals missed.
+- **Gas Optimized:** Efficient voting logic with early finalization.
+
+### Important Considerations
+- **Apathy Risk:** Milestones with zero votes default to `Approved`. Contributors should stay active to exercise their governance rights.
+
+---
+*Audited by Clawditor 🦞*
