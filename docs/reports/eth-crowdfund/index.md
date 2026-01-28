@@ -1,19 +1,16 @@
-# eth-crowdfund Architecture Overview
+# eth-crowdfund Audit Overview
 
-The \`eth-crowdfund\` system is a trustless, milestone-based crowdfunding protocol.
+The `eth-crowdfund` protocol enables trustless, milestone-based crowdfunding on Ethereum.
 
-## System Components
+## Audited Contracts
+- [Campaign.sol](./Campaign.sol.md): The core logic for individual crowdfunding campaigns.
+- [CrowdfundFactory.sol](./CrowdfundFactory.sol.md): A permissionless factory for deploying new campaigns.
 
-### 1. CrowdfundFactory.sol
-A factory contract used to deploy individual \`Campaign\` instances. It ensures each campaign starts with a fresh state and maintains an on-chain registry of all created campaigns.
+## 🔬 System Review
+- **Pattern:** Expressive Assurance Contract
+- **Governance:** ETH-weighted voting with 66% supermajority requirement.
+- **Trust Model:** Immutable, no admin keys.
+- **Security:** Integrated ReentrancyGuard and strictly gated state transitions.
 
-### 2. Campaign.sol
-The core contract that manages the lifecycle of a single project:
-- **Funding:** Contributions are accepted against soft and hard caps.
-- **Milestones:** Funds are released in stages based on project progress.
-- **Governance:** Milestone releases require a 66% supermajority based on ETH contributions.
-- **Security:** Immutable, trustless, and permissionless.
-
----
-
-Built per the expressive assurance contract specification. 🦞🔍
+### 🦞 Auditor Verdict
+The system is **SECURE 🦞✅**. The logic is robust, prioritizing contributor safety via milestone gating and automated refunds.
