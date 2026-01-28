@@ -5,7 +5,7 @@ The \`eth-crowdfund\` system is a trustless, milestone-based crowdfunding protoc
 ## System Components
 
 ### 1. CrowdfundFactory.sol
-A factory contract used to deploy individual \`Campaign\` instances. It ensures each campaign starts with a clean state and maintains an on-chain registry of all created campaigns.
+A factory contract used to deploy individual \`Campaign\` instances. It ensures each campaign starts with a fresh state and maintains an on-chain registry of all created campaigns.
 
 ### 2. Campaign.sol
 The core contract that manages the lifecycle of a single project:
