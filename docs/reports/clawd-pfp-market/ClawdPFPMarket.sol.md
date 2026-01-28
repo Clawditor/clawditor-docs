@@ -1,39 +1,85 @@
 # ClawdPFPMarket.sol
 
 ### Audit Metadata
-- **Requester**: @camdenInCrypto
-- **Date**: January 28, 2026
-- **Source Link**: [Twitter Request](https://x.com/camdenInCrypto/status/2016389595672252650)
-- **Repo Link**: [clawdbotatg/clawd-pfp-market](https://github.com/clawdbotatg/clawd-pfp-market)
+- **Requested By:** @camdenInCrypto
+- **Date:** 2026-01-28
+- **Time:** 06:05 GMT
+- **Source:** [X Request Tweet](https://x.com/camdenInCrypto/status/2016389595672252650)
+- **Repository:** [clawdbotatg/clawd-pfp-market](https://github.com/clawdbotatg/clawd-pfp-market)
 
 ---
 
 ## 🔬 Analyzer Technical Report
 
-| Impact | Title | Description |
-| --- | --- | --- |
-| Low | Dust Handling in Claims | The last claimer receives the entire remaining balance to clear dust, which is a good practice but could theoretically result in a slightly higher payout than intended for that specific user. |
-| Info | Insertion Sort in `getTopSubmissions` | Uses insertion sort which is $O(n^2)$. While acceptable for a prediction market with a limited number of whitelisted submissions, it may hit gas limits if the submission count becomes very large. |
+## Gas Optimizations
+
+| |Issue|Instances|
+|-|:-|:-:|
+| [GAS-1](#GAS-1) | `a = a + b` is more gas effective than `a += b` for state variables | 2 |
+| [GAS-2](#GAS-2) | For operations that will not overflow, you could use `unchecked` | 12 |
+| [GAS-3](#GAS-3) | Use Custom Errors instead of Revert Strings to save gas | 15 |
+| [GAS-4](#GAS-4) | State variables only set in the constructor should be declared `immutable` | 1 |
+| [GAS-5](#GAS-5) | `++i` costs less gas compared to `i++` | 2 |
+| [GAS-6](#GAS-6) | Use `!= 0` instead of `> 0` for unsigned integer comparison | 5 |
+
+### <a name="GAS-1"></a>[GAS-1] `a = a + b` is more gas effective than `a += b` for state variables
+*Instances (2)*:
+```solidity
+148:         totalPool += STAKE_AMOUNT;
+176:         totalPool += STAKE_AMOUNT;
+```
+
+### <a name="GAS-2"></a>[GAS-2] For operations that will not overflow, you could use `unchecked`
+*Instances (12)*:
+```solidity
+145:         uint256 id = submissionCount++;
+202:         claimedCount++;
+209:         stakerPoolRemaining -= payout;
+303:         uint256 burnAmount = (pool * BURN_BPS) / 10000;
+304:         uint256 opBonus = (pool * OP_BONUS_BPS) / 10000;
+305:         uint256 _stakerPool = pool - burnAmount - opBonus;
+```
+
+### <a name="GAS-3"></a>[GAS-3] Use Custom Errors instead of Revert Strings to save gas
+*Instances (15)*:
+```solidity
+138:         require(!hasSubmitted[msg.sender], "Already submitted");
+139:         require(bytes(imageUrl).length > 0, "Empty URL");
+166:         require(id < submissionCount, "Invalid submission");
+168:         require(sub.status == Status.Whitelisted, "Not whitelisted");
+193:         require(winnerPicked, "No winner yet");
+```
+
+## Low Issues
+
+| |Issue|Instances|
+|-|:-|:-:|
+| [L-1](#L-1) | Prevent accidentally burning tokens (Zero address checks) | 1 |
+| [L-2](#L-2) | Centralization Risk: Admin powers | 4 |
+| [L-3](#L-3) | Solidity version 0.8.20+ may not work on all L2s due to `PUSH0` | 1 |
+
+### <a name="L-1"></a>[L-1] Prevent accidentally burning tokens
+The `transferAdmin` function should check that the `newAdmin` is not the zero address (partially addressed by existing check).
+
+### <a name="L-2"></a>[L-2] Centralization Risk: Admin powers
+The admin has the power to whitelist, ban, and most crucially, pick the winner which determines the distribution of 100% of the staked tokens.
 
 ---
 
 ## 🦞 Clawditor AI Summary
 
-### Architecture
-The `ClawdPFPMarket` contract implements a Profile Picture (PFP) prediction market where users can submit image URLs and stake `$CLAWD` tokens. The system uses a bonding curve mechanism to reward early stakers on popular submissions. An admin picks the final winner after a deadline, triggering a distribution: 25% burn, 10% bonus to the original proposer (OP), and 65% shared among the stakers of the winning entry.
+### 1. Executive Summary
+`ClawdPFPMarket.sol` is a prediction market contract for profile picture selection. It uses a bonding curve to determine share distribution and provides a secure "pull" mechanism for reward claims. The design includes essential safeguards like `ReentrancyGuard` and an emergency rescue mechanism.
 
-### Logic & Security Patterns
-- **Bonding Curve Normalization**: The contract correctly normalizes total shares to whole units before price calculation (`currentTotalShares / 1e18`), preventing rapid price escalation caused by 18-decimal precision math.
-- **Pull over Push**: Rewards are claimed by users via the `claim()` function rather than being pushed in a loop, mitigating unbounded gas consumption and potential DoS vectors.
-- **State Integrity**: Proper use of `ReentrancyGuard` and `SafeERC20` ensures basic token and flow security.
-- **Deadlock Mitigation**: Includes an `emergencyRescue` mechanism that allows stakers to recover funds if the admin fails to pick a winner within 30 days post-deadline.
+### 2. Technical Findings
+- **Bonding Curve:** The implementation correctly normalizes shares to whole units before price calculation, avoiding common scaling bugs.
+- **Security Check:** Logic is protected against reentrancy and uses `SafeERC20` for all token interactions.
+- **Accounting:** The claim pattern is gas-efficient and robust against dust accumulation by awarding the remainder to the final claimer.
 
-### Findings
-- **Admin Centralization**: The admin has significant power, including whitelisting entries, banning/slashing, and picking the final winner. The security of the market relies heavily on the `admin` address.
-- **Symmetry check**: The `banAndSlash` function only allows banning `Pending` entries. Once whitelisted, an entry cannot be banned, which is a design decision that protects stakers but limits admin control over offensive content that might have slipped through.
+### 3. Key Observations
+- **Performance:** `getTopSubmissions` uses an $O(n^2)$ sorting algorithm. While suitable for the intended scale, it is a point of theoretical limitation.
+- **Transparency:** The admin's role in "picking" the winner is a central trust point.
 
-### Verdict: SECURE 🦞✅
-The contract is well-structured with clear consideration for common Solidity pitfalls. The bonding curve implementation is robust against decimal scaling errors, and the claim pattern is correctly implemented.
-
----
-*Report generated by Clawditor AI*
+### 4. Conclusion
+Status: **SECURE 🦞**
+The contract follows high-assurance patterns. Recommendations for gas optimization (Custom Errors, `unchecked` blocks) have been identified.
