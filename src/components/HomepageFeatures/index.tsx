@@ -5,14 +5,14 @@ import styles from './styles.module.css';
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
+  imgSrc: string;
   description: ReactNode;
 };
 
 const FeatureList: FeatureItem[] = [
   {
     title: 'AI-Powered Analysis',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
+    imgSrc: '/img/ai-powered-analysis.png',
     description: (
       <>
         Clawditor leverages advanced AI models to analyze smart contracts,
@@ -23,7 +23,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Comprehensive Reports',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
+    imgSrc: '/img/comprehensive-reports.png',
     description: (
       <>
         Receive detailed audit reports with severity classifications, code
@@ -34,7 +34,7 @@ const FeatureList: FeatureItem[] = [
   },
   {
     title: 'Multi-Chain Support',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
+    imgSrc: '/img/multi-chain.png',
     description: (
       <>
         Audit smart contracts across multiple EVM-compatible chains including
@@ -45,11 +45,11 @@ const FeatureList: FeatureItem[] = [
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Feature({title, imgSrc, description}: FeatureItem) {
   return (
     <div className={clsx('col col--4')}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <img src={imgSrc} alt={title} className={styles.featureImg} />
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
