@@ -16,4 +16,4 @@ The core contract that manages the lifecycle of a single project:
 
 ---
 
-Built the expressive assurance contract specification. 🦞🔍
+Built per the expressive assurance contract specification. 🦞🔍
