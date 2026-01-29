@@ -28,7 +28,7 @@ File: EmberLottery.sol
 135:         lottery.totalPot += cost;
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="GAS-2"></a>[GAS-2] Use assembly to check for `address(0)`
 *Saves 6 gas per instance*
@@ -44,7 +44,7 @@ File: EmberLottery.sol
 267:         if (_feeRecipient == address(0)) revert ZeroAddress();
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="GAS-3"></a>[GAS-3] State variables should be cached in stack variables rather than re-reading them from storage
 The instances below point to the second+ access of a state variable within a function. Caching of a state variable replaces each Gwarmaccess (100 gas) with a much cheaper stack read. Other less obvious fixes/optimizations include having local memory caches of state variable structs, or having local caches of state variable contracts/addresses.
@@ -60,7 +60,7 @@ File: EmberLottery.sol
 223:         emit WinnerSelected(currentLotteryId, winner, prize);
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="GAS-4"></a>[GAS-4] For Operations that will not overflow, you could use unchecked
 
@@ -105,7 +105,7 @@ File: EmberLottery.sol
 215:         uint256 prize = lottery.totalPot - fee;
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="GAS-5"></a>[GAS-5] Use Custom Errors instead of Revert Strings to save Gas
 Custom errors are available from solidity version 0.8.4. Custom errors save [**~50 gas**](https://gist.github.com/IllIllI000/ad1bd0d29a0101b25e57c293b4b0c746) each time they're hit by [avoiding having to allocate and store the revert string](https://blog.soliditylang.org/2021/04/21/custom-errors/#errors-in-depth). Not defining the strings also save deployment gas
@@ -125,7 +125,7 @@ File: EmberLottery.sol
 112:         require(block.timestamp < lottery.commitEndTime, "Commit period ended");
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="GAS-6"></a>[GAS-6] Functions guaranteed to revert when called by normal users can be marked `payable`
 If a function modifier such as `onlyOwner` is used, the function will revert if a normal user tries to pay the function. Marking the function as `payable` will lower the gas cost for legitimate callers because the compiler will not include checks for whether a payment was provided.
@@ -139,7 +139,7 @@ File: EmberLottery.sol
 274:     function emergencyWithdraw() external onlyOwner {
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="GAS-7"></a>[GAS-7] `++i` costs less gas compared to `i++` or `i += 1` (same for `--i` vs `i--` or `i -= 1`)
 Pre-increments and pre-decrements are cheaper.
@@ -189,7 +189,7 @@ File: EmberLottery.sol
 130:         for (uint256 i = 0; i < _ticketCount; i++) {
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="GAS-8"></a>[GAS-8] Using `private` rather than `public` for constants, saves gas
 If needed, the values can be read from the verified contract source code, or if there are multiple values there can be a single getter function that [returns a tuple](https://github.com/code-423n4/2022-08-frax/blob/90f55a9ce4e25bceed3a74290b854341d8de6afa/src/contracts/FraxlendPair.sol#L156-L178) of the values of all currently-public constants. Saves **3406-3606 gas** in deployment gas due to the compiler not having to create non-payable getter functions for deployment calldata, not having to store the bytes of the value outside of where it's used, and not adding another entry to the method ID table
@@ -205,7 +205,7 @@ File: EmberLottery.sol
 57:     uint256 public constant BLOCKHASH_ALLOWED_RANGE = 256; // Max blocks to use blockhash
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="GAS-9"></a>[GAS-9] Increments/decrements can be unchecked in for-loops
 In Solidity 0.8+, there's a default overflow check on unsigned integers. It's possible to uncheck this in for-loops and save some gas at each iteration, but at the cost of some code readability, as this uncheck cannot be made inline.
@@ -235,7 +235,7 @@ File: EmberLottery.sol
 130:         for (uint256 i = 0; i < _ticketCount; i++) {
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="GAS-10"></a>[GAS-10] Use != 0 instead of > 0 for unsigned integer comparison
 
@@ -254,7 +254,7 @@ File: EmberLottery.sol
 279:         if (balance > 0) {
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 
 ## Non Critical Issues
@@ -294,7 +294,7 @@ File: EmberLottery.sol
 200:                     keccak256(abi.encodePacked(
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-2"></a>[NC-2] Control structures do not follow the Solidity Style Guide
 See the [control structures](https://docs.soliditylang.org/en/latest/style-guide.html#control-structures) section of the Solidity Style Guide
@@ -330,7 +330,7 @@ File: EmberLottery.sol
 276:         if (lottery.participants.length > 0) revert NoParticipants();
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-3"></a>[NC-3] Consider disabling `renounceOwnership()`
 If the plan for your project does not include eventually giving up all ownership control, consider overwriting OpenZeppelin's `Ownable`'s `renounceOwnership()` function in order to disable it.
@@ -342,7 +342,7 @@ File: EmberLottery.sol
 19: contract EmberLottery is Ownable, ReentrancyGuard {
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-4"></a>[NC-4] Unused `error` definition
 Note that there may be cases where an error superficially appears to be used, but this is only because there are multiple definitions of the error in different files. In such cases, the error definition should be moved into a separate file. The instances below are the unused definitions.
@@ -356,7 +356,7 @@ File: EmberLottery.sol
 31:     error RevealTooEarly();
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-5"></a>[NC-5] Functions should not be longer than 50 lines
 Overly complex code can make understanding functionality more difficult, try to further modularize your code to ensure readability 
@@ -380,7 +380,7 @@ File: EmberLottery.sol
 266:     function setFeeRecipient(address _feeRecipient) external onlyOwner {
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-6"></a>[NC-6] Missing Event for critical parameters change
 Events help non-contract tools to track changes, and events prevent users from being surprised by changes.
@@ -394,7 +394,7 @@ File: EmberLottery.sol
              feeRecipient = _feeRecipient;
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-7"></a>[NC-7] NatSpec is completely non-existent on functions that should have them
 Public and external functions that aren't view or pure should have NatSpec comments
@@ -406,7 +406,7 @@ File: EmberLottery.sol
 266:     function setFeeRecipient(address _feeRecipient) external onlyOwner {
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-8"></a>[NC-8] Consider using named mappings
 Consider moving to solidity version 0.8.18 or later, and using [named mappings](https://ethereum.stackexchange.com/questions/51629/how-to-name-the-arguments-in-mapping/145555#145555) to make it easier to understand the purpose of each mapping
@@ -424,7 +424,7 @@ File: EmberLottery.sol
 64:     mapping(uint256 => mapping(address => uint256)) public ticketCount;
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-9"></a>[NC-9] Adding a `return` statement when the function defines a named return variable, is redundant
 
@@ -448,7 +448,7 @@ File: EmberLottery.sol
              return (
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-10"></a>[NC-10] Take advantage of Custom Error's return value property
 An important feature of Custom Error is that values such as address, tokenID, msg.value can be written inside the () sign, this kind of approach provides a serious advantage in debugging and examining the revert details of dapps such as tenderly.
@@ -484,7 +484,7 @@ File: EmberLottery.sol
 276:         if (lottery.participants.length > 0) revert NoParticipants();
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-11"></a>[NC-11] Contract does not follow the Solidity style guide's suggested layout ordering
 The [style guide](https://docs.soliditylang.org/en/v0.8.16/style-guide.html#order-of-layout) says that, within a contract, the ordering should be:
@@ -577,7 +577,7 @@ File: EmberLottery.sol
    FunctionDefinition.emergencyWithdraw
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-12"></a>[NC-12] Use Underscores for Number Literals (add an underscore every 3 digits)
 
@@ -588,7 +588,7 @@ File: EmberLottery.sol
 56:     uint256 public constant MAX_BPS = 10000;
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-13"></a>[NC-13] Event is missing `indexed` fields
 Index event fields make the field more quickly accessible to off-chain tools that parse events. However, note that each index field costs extra gas during emission, so it's not necessarily best to index the maximum allowed per event (three fields). Each event should use three indexed fields if there are three or more fields, and gas usage is not particularly of concern for the events in question. If there are fewer than three fields, all of the fields should be indexed.
@@ -608,7 +608,7 @@ File: EmberLottery.sol
 38:     event Committed(uint256 indexed lotteryId, address indexed participant, bytes32 commit);
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="NC-14"></a>[NC-14] Variables need not be initialized to zero
 The default value for variables is zero, so initializing them to zero is superfluous.
@@ -620,7 +620,7 @@ File: EmberLottery.sol
 130:         for (uint256 i = 0; i < _ticketCount; i++) {
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 
 ## Low Issues
@@ -644,7 +644,7 @@ File: EmberLottery.sol
 19: contract EmberLottery is Ownable, ReentrancyGuard {
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="L-2"></a>[L-2] `abi.encodePacked()` should not be used with dynamic types when passing the result to a hash function such as `keccak256()`
 Use `abi.encode()` instead which will pad items to 32 bytes, which will [prevent hash collisions](https://docs.soliditylang.org/en/v0.8.13/abi-spec.html#non-standard-packed-mode) (e.g. `abi.encodePacked(0x123,0x456)` => `0x123456` => `abi.encodePacked(0x1,0x23456)`, but `abi.encode(0x123,0x456)` => `0x0...1230...456`). "Unless there is a compelling reason, `abi.encode` should be preferred". If there is only one argument to `abi.encodePacked()` it can often be cast to `bytes()` or `bytes32()` [instead](https://ethereum.stackexchange.com/questions/30912/how-to-compare-strings-in-solidity#answer-82739).
@@ -657,7 +657,7 @@ File: EmberLottery.sol
 172:             bytes32 expectedCommit = keccak256(abi.encodePacked(_secret, msg.sender));
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="L-3"></a>[L-3] Loss of precision
 Division by large numbers may result in the result being zero, due to solidity not supporting fractions. Consider requiring a minimum amount for the numerator to ensure that it is always larger than the denominator
@@ -669,7 +669,7 @@ File: EmberLottery.sol
 214:         uint256 fee = (lottery.totalPot * FEE_BPS) / MAX_BPS;
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="L-4"></a>[L-4] Solidity version 0.8.20+ may not work on other chains due to `PUSH0`
 The compiler for Solidity 0.8.20 switches the default target EVM version to [Shanghai](https://blog.soliditylang.org/2023/05/10/solidity-0.8.20-release-announcement/#important-note), which includes the new `PUSH0` op code. This op code may not yet be implemented on all L2s, so deployment on these chains will fail. To work around this issue, use an earlier [EVM](https://docs.soliditylang.org/en/v0.8.20/using-the-compiler.html?ref=zaryabs.com#setting-the-evm-version-to-target) [version](https://book.getfoundry.sh/reference/config/solidity-compiler#evm_version). While the project itself may or may not compile with 0.8.20, other projects with which it integrates, or which extend this project may, and those projects will have problems deploying these contracts/libraries.
@@ -681,7 +681,7 @@ File: EmberLottery.sol
 2: pragma solidity ^0.8.20;
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="L-5"></a>[L-5] Use `Ownable2Step.transferOwnership` instead of `Ownable.transferOwnership`
 Use [Ownable2Step.transferOwnership](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable2Step.sol) which is safer. Use it as it is more secure due to 2-stage ownership transfer.
@@ -705,7 +705,7 @@ File: EmberLottery.sol
 4: import {Ownable} from "solady/auth/Ownable.sol";
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="L-6"></a>[L-6] Upgradeable contract not initialized
 Upgradeable contracts are initialized via an initializer function rather than by a constructor. Leaving such a contract uninitialized may lead to it being taken over by a malicious user
@@ -717,7 +717,7 @@ File: EmberLottery.sol
 69:         _initializeOwner(msg.sender);
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 
 ## Medium Issues
@@ -743,7 +743,7 @@ File: EmberLottery.sol
 201:                         blockhash(block.number - 1),
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
 ### <a name="M-2"></a>[M-2] Centralization Risk for trusted owners
 
@@ -763,5 +763,5 @@ File: EmberLottery.sol
 274:     function emergencyWithdraw() external onlyOwner {
 
 ```
-[Link to code](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
+🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
