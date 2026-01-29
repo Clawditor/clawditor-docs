@@ -3,7 +3,7 @@
 On January 8, 2026, the Truebit Protocol was exploited for approximately **$26.4 million**. The attack targeted a five-year-old, closed-source "Purchase" contract, utilizing a fundamental mathematical vulnerability—an **integer overflow**—to devalue the protocol's native TRU token to near-zero.
 
 ## Technical Overview
-The vulnerability existed within the protocol's pricing engine, specifically the `getPurchasePrice` function used during the minting of TRU tokens. The contract was written in an older version of Solidity (v0.6.10), which does not include built-in overflow/underflow checks. Unlike modern Solidity (v0.8.0+), which automatically reverts on overflow, v0.6.x requires explicit use of the `SafeMath` library to prevent arithmetic "wrap-around."
+The vulnerability existed within the protocol's pricing engine, specifically the `getPurchasePrice` function used during the minting of TRU tokens. The contract was written in an older version of Solidity (v0.6.10), which does not include built-in overflow/underflow checks. Unlike modern Solidity (v0.8.0+), which automatically reverts on overflow, vSolidity 0.6 requires explicit use of the `SafeMath` library to prevent arithmetic "wrap-around."
 
 ## Exploit Mechanism: Arithmetic Wrap-Around
 The attacker exploited a missing overflow check in the **numerator** of the TRU price calculation formula.

@@ -3,7 +3,7 @@
 On January 11, 2026, the Truebit Protocol was exploited for approximately **$26.44 million** in ETH and TRU tokens. This incident serves as a definitive case study in **legacy contract risk**, specifically the danger of running older Solidity code (pre-v0.8.0) without explicit arithmetic safety precautions.
 
 ## Technical Overview
-The vulnerability focused on the protocol's `Purchase` contract, which was responsible for minting TRU tokens in exchange for ETH. This contract was written in **Solidity v0.6.10**. Unlike Solidity versions 0.8.0 and above, version 0.6.x does not have built-in checked arithmetic; it allows integers to "overflow" (wrap around to zero) without reverting.
+The vulnerability focused on the protocol's `Purchase` contract, which was responsible for minting TRU tokens in exchange for ETH. This contract was written in Solidity v0.6.10. Unlike Solidity versions 0.8.0 and above, version 0.6 does not have built-in checked arithmetic; it allows integers to "overflow" (wrap around to zero) without reverting.
 
 ## Exploit Mechanism: The Price-to-Zero Overflow
 The attacker identified an unchecked addition operation in the numerator of the price calculation logic.
@@ -18,8 +18,8 @@ The attacker identified an unchecked addition operation in the numerator of the 
 The Truebit hack is what security researchers call an "archeological exploit." The vulnerability wasn't in new code, but in a **five-year-old legacy contract**. Many protocols leave older, immutable contracts running even after upgrading their core logic. Attackers are increasingly searching for these "forgotten" entry points where modern security standards (like checked arithmetic) were not yet the default.
 
 ## Mitigation Strategies
-*   **Compile with 0.8.x or Newer:** Whenever possible, migrate legacy code to Solidity 0.8 or newer where overflow protection is enabled by default.
-*   **SafeMath for Legacy:** If a contract must remain on an older version (for example, 0.6.x or 0.7.x), **every** arithmetic operation must be wrapped in a library like OpenZeppelin's SafeMath.
+*   **Compile with Solidity 0.8 or newer:** Whenever possible, migrate legacy code to Solidity 0.8 or newer where overflow protection is enabled by default.
+*   **SafeMath for Legacy:** If a contract must remain on an older version (for example, Solidity 0.6 or 0.7), every arithmetic operation must be wrapped in a library like OpenZeppelin's SafeMath.
 *   **Legacy Inventory:** Protocols must maintain a complete inventory of all active contracts, especially closed-source or legacy ones. Any contract with significant TVL or minting authority should undergo a modern security review, regardless of how long it has been "stable."
 *   **Emergency Halt/Circuit Breakers:** Implement logic that pauses minting or transfers if the price of a token drops by a massive percentage (for example, greater than 90 percent) within a single transaction or block.
 

@@ -5,7 +5,7 @@ On January 8, 2026, the Truebit Protocol, a decentralized computation layer, suf
 ## Technical Overview
 The vulnerability focused on the protocol's **legacy Purchase contract**, responsible for minting TRU tokens in exchange for ETH. This contract was written in **Solidity v0.6.10**. 
 
-Unlike Solidity versions 0.8.0 and above—which include built-in checked arithmetic that reverts on overflow—v0.6.x allows integers to "wrap around" starting back from zero if they exceed their maximum capacity (`2^256 - 1` for `uint256`), unless the `SafeMath` library is explicitly used for every operation.
+Unlike Solidity versions 0.8.0 and above—which include built-in checked arithmetic that reverts on overflow—vSolidity 0.6 allows integers to "wrap around" starting back from zero if they exceed their maximum capacity (`2^256 - 1` for `uint256`), unless the `SafeMath` library is explicitly used for every operation.
 
 The bug resided in an unchecked addition operation within the numerator of the price calculation logic.
 

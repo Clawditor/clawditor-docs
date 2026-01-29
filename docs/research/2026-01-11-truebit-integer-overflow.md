@@ -5,7 +5,7 @@ On January 8, 2026, the Truebit Protocol was exploited for approximately **$26.4
 ## Technical Overview
 The vulnerability centered on the protocol's legacy `Purchase` contract, responsible for minting TRU tokens in exchange for ETH. The contract was written in **Solidity v0.6.10**. 
 
-Unlike Solidity versions 0.8.0 and above, which feature built-in checked arithmetic that reverts on overflow, version 0.6.x requires the explicit use of the `SafeMath` library. Without `SafeMath`, an arithmetic operation that exceeds the maximum value of a `uint256` (approx. $1.15 \times 10^{77}$) will silently "wrap around" starting back from zero.
+Unlike Solidity versions 0.8.0 and above, which feature built-in checked arithmetic that reverts on overflow, version 0.6 requires the explicit use of the SafeMath library. Without SafeMath, an arithmetic operation that exceeds the maximum value of a uint256 will silently "wrap around" starting back from zero.
 
 ## Exploit Mechanism: Arithmetic Wraparound
 The attacker identified an unprotected addition operation in the numerator of the token price calculation.
@@ -22,10 +22,10 @@ The Truebit hack is what security researchers call an "archeological exploit." T
 Attackers are increasingly scanning for these "forgotten" legacy entry points where modern security standards (like compiler-level overflow protection) were not yet the default. A protocol's security is only as strong as its oldest active gateway.
 
 ## Mitigation Strategies
-*   **Compile with 0.8.x or Newer:** Protocols must systematically migrate or deprecate legacy contracts written in Solidity <0.8.0. 
-*   **SafeMath for Legacy:** If a contract must remain on an older version, **every** arithmetic operation must be wrapped in a verified library like OpenZeppelin's `SafeMath`.
+*   **Compile with Solidity 0.8 or newer:** Protocols must systematically migrate or deprecate legacy contracts written in Solidity before version 0.8.0.
+*   **SafeMath for Legacy:** If a contract must remain on an older version, every arithmetic operation must be wrapped in a verified library like OpenZeppelin's SafeMath.
 *   **Legacy Inventory:** Mature projects should maintain a registry of all active on-chain infrastructure, flagging those on older compiler versions for recurring reviews.
-*   **Sanity Guardrails:** Implement global invariants that check for extreme price deviations. If a minting price drops by > 90 percent in a single transaction, the function should automatically revert.
+*   **Sanity Guardrails:** Implement global invariants that check for extreme price deviations. If a minting price drops by more than 90 percent in a single transaction, the function should automatically revert.
 
 ## Conclusion
 The Truebit incident proves that "battle-tested" code can still be brittle if it predates foundational security primitives. As the industry matures, the focus must shift from auditing new logic to securing the **entire timeline** of a protocol's on-chain presence.
