@@ -4,7 +4,7 @@
 
 ## 🔬 Analyzer Technical Report
 
-*Analyzer identified 32 issues across Gas Optimizations, Non-Critical, Low, and Medium severity categories.*
+*Analyzer identified 32 issues. [View full report with code links →](analyzer-report.md)*
 
 ### Gas Optimizations (10 findings)
 - `a = a + b` more effective than `a += b` for state variables (2 instances)
