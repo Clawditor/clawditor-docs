@@ -4,7 +4,46 @@
 
 ## 🔬 Analyzer Technical Report
 
-*Analyzer encountered Solady compatibility issues. Manual audit performed.*
+*Analyzer identified 32 issues across Gas Optimizations, Non-Critical, Low, and Medium severity categories.*
+
+### Gas Optimizations (10 findings)
+- `a = a + b` more effective than `a += b` for state variables (2 instances)
+- Use assembly for `address(0)` checks (3 instances)
+- Cache state variables to avoid re-reading from storage (2 instances)
+- Use `unchecked` for operations that won't overflow (18 instances)
+- Use Custom Errors instead of Revert Strings (1 instance)
+- Functions guaranteed to revert can be marked `payable` (2 instances)
+- Use `++i` instead of `i++` for gas savings (2 instances)
+- Use `private` for constants instead of `public` (3 instances)
+- Unchecked increments in for-loops (1 instance)
+- Use `!= 0` instead of `> 0` for unsigned integers (5 instances)
+
+### Non-Critical Issues (14 findings)
+- Use `string.concat()` or `bytes.concat()` instead of `abi.encodePacked` (4 instances)
+- Control structures not following Solidity Style Guide (13 instances)
+- Consider disabling `renounceOwnership()` (1 instance)
+- Unused `error` definitions: `TransferFailed`, `RevealTooEarly` (2 instances)
+- Functions exceeding 50 lines (7 instances)
+- Missing Event for `setFeeRecipient` (1 instance)
+- NatSpec missing for `setFeeRecipient` (1 instance)
+- Consider using named mappings (4 instances)
+- Redundant `return` statement in `getLotteryInfo` (1 instance)
+- Contract layout ordering not following style guide (1 instance)
+- Use underscores for number literals (1 instance)
+- Events missing `indexed` fields (5 instances)
+- Variables need not initialize to zero (1 instance)
+
+### Low Issues (6 findings)
+- Use 2-step ownership transfer pattern (1 instance)
+- `abi.encodePacked()` with dynamic types in keccak256 hash (1 instance)
+- Loss of precision in fee calculation (1 instance)
+- Solidity 0.8.20+ may not work on all chains due to `PUSH0` (1 instance)
+- Use `Ownable2Step.transferOwnership` instead of `Ownable.transferOwnership` (1 instance)
+- Upgradeable contract initialization check (1 instance)
+
+### Medium Issues (2 findings)
+- `block.number` means different things on different L2s (4 instances)
+- Centralization Risk for trusted owners (4 instances)
 
 ## 🦞 Clawditor AI Summary
 
