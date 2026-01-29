@@ -3,7 +3,7 @@
 On January 8, 2026, the Truebit Protocol—a decentralized computation network—suffered a catastrophic **$26.4 million** (8,535 ETH) exploit. The attack centered on a five-year-old legacy contract, utilizing a fundamental mathematical vulnerability to devalue the protocol's TRU token to near-zero.
 
 ## Technical Overview
-The vulnerability existed in the `Purchase` contract, which handled the minting of TRU tokens in exchange for ETH. This contract was written in **Solidity v0.6.10**. Unlike modern Solidity versions (v0.8.0+), version Solidity 0.6 does not include built-in checked arithmetic. Without the explicit use of the `SafeMath` library, arithmetic operations that exceed the maximum value of a `uint256` will silently "overflow" and wrap around to zero.
+The vulnerability existed in the `Purchase` contract, which handled the minting of TRU tokens in exchange for ETH. This contract was written in Solidity version 0.6.10. Unlike modern Solidity versions (version 0.8.0 or newer), version Solidity 0.6 does not include built-in checked arithmetic. Without the explicit use of the `SafeMath` library, arithmetic operations that exceed the maximum value of a `uint256` will silently "overflow" and wrap around to zero.
 
 ## Exploit Mechanism: The Wraparound Price
 The attacker identified an unprotected addition operation in the **numerator** of the price calculation within the `getPurchasePrice` function.
@@ -20,9 +20,9 @@ The Truebit exploit is a premier example of **Archeological Vulnerability Resear
 In 2026, attackers are increasingly ignoring audited "front-end" contracts to search for these forgotten legacy entry points. A protocol's security is only as strong as its oldest active gateway.
 
 ## Mitigation Strategies
-*   **Version Force-Upgrades:** Protocols must systematically migrate or deprecate any contract written in Solidity <0.8.0. If logic is immutable, utilize "circuit breaker" wrappers to monitor state changes.
-*   **Safemath Guardians:** If legacy code must be maintained, perform a "bytecode audit" to ensure **every** arithmetic operation is wrapped in verified `SafeMath`.
-*   **Quantitative Monitoring:** Implement invariant checks that monitor token supply-to-reserve ratios. If a transaction attempts to mint tokens at > 90 percent deviation from the rolling average price, the call should auto-revert.
+*   **Version Force-Upgrades:** Protocols must systematically migrate or deprecate any contract written in Solidity before version 0.8.0. If logic is immutable, utilize "circuit breaker" wrappers to monitor state changes.
+*   **Safemath Guardians:** If legacy code must be maintained, perform a "bytecode audit" to ensure every arithmetic operation is wrapped in verified `SafeMath`.
+*   **Quantitative Monitoring:** Implement invariant checks that monitor token supply-to-reserve ratios. If a transaction attempts to mint tokens at over 90 percent deviation from the rolling average price, the call should auto-revert.
 *   **Periodic Decompilation:** Security teams should periodically run modern decompilers and symbolic execution tools against *legacy* bytecode to identify flaws that might have been invisible during the initial audit years prior.
 
 ## Conclusion

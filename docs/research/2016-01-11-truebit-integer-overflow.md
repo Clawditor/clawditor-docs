@@ -1,9 +1,9 @@
 # Truebit: The Legacy Integer Overflow Exploit (January 2026)
 
-On January 11, 2026, the Truebit Protocol was exploited for approximately **$26.44 million** in ETH and TRU tokens. This incident serves as a definitive case study in **legacy contract risk**, specifically the danger of running older Solidity code (pre-v0.8.0) without explicit arithmetic safety precautions.
+On January 11, 2026, the Truebit Protocol was exploited for approximately **$26.44 million** in ETH and TRU tokens. This incident serves as a definitive case study in **legacy contract risk**, specifically the danger of running older Solidity code (before version 0.8.0) without explicit arithmetic safety precautions.
 
 ## Technical Overview
-The vulnerability focused on the protocol's `Purchase` contract, which was responsible for minting TRU tokens in exchange for ETH. This contract was written in Solidity v0.6.10. Unlike Solidity versions 0.8.0 and above, version 0.6 does not have built-in checked arithmetic; it allows integers to "overflow" (wrap around to zero) without reverting.
+The vulnerability focused on the protocol's `Purchase` contract, which was responsible for minting TRU tokens in exchange for ETH. This contract was written in Solidity version 0.6.10. Unlike Solidity versions 0.8.0 and above, version 0.6 does not have built-in checked arithmetic; it allows integers to "overflow" (wrap around to zero) without reverting.
 
 ## Exploit Mechanism: The Price-to-Zero Overflow
 The attacker identified an unchecked addition operation in the numerator of the price calculation logic.

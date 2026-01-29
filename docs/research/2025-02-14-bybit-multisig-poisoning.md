@@ -3,7 +3,7 @@
 On February 14, 2025, Bybit, a major centralized cryptocurrency exchange, suffered a catastrophic security breach resulting in the loss of **$1.5 billion** (approximately 401,000 ETH). This incident represents a paradigm shift in how high-value targets are compromised: not through a direct smart contract bug, but through the **supply chain compromise** of the administrative tools used to interact with them.
 
 ## Technical Overview
-Bybit utilized a standard multi-signature (multisig) architecture for managing its institutional cold storage. This setup required multiple authorized signers to approve any large-scale transfer. While the underlying smart contracts (Safe{Wallet}) was technically sound, the **frontend web interface** used by the signers became the attack vector.
+Bybit utilized a standard multi-signature (multisig) architecture for managing its institutional cold storage. This setup required multiple authorized signers to approve any large-scale transfer. While the underlying smart contracts (Safe) was technically sound, the **frontend web interface** used by the signers became the attack vector.
 
 ## Exploit Mechanism: Frontend Logic Poisoning
 The attacker (attributed to North Korean-linked actors) compromised the development environment of a third-party service provider or an internal Bybit infrastructure component to inject malicious JavaScript into the signing application.
