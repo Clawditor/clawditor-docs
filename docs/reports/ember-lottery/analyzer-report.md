@@ -4,19 +4,19 @@
 ## Gas Optimizations
 
 
-| |Issue|Instances|
-|-|:-|:-:|
-| [GAS-1](#GAS-1) | `a = a + b` is more gas effective than `a += b` for state variables (excluding arrays and mappings) | 2 |
-| [GAS-2](#GAS-2) | Use assembly to check for `address(0)` | 3 |
-| [GAS-3](#GAS-3) | State variables should be cached in stack variables rather than re-reading them from storage | 2 |
-| [GAS-4](#GAS-4) | For Operations that will not overflow, you could use unchecked | 18 |
-| [GAS-5](#GAS-5) | Use Custom Errors instead of Revert Strings to save Gas | 1 |
-| [GAS-6](#GAS-6) | Functions guaranteed to revert when called by normal users can be marked `payable` | 2 |
-| [GAS-7](#GAS-7) | `++i` costs less gas compared to `i++` or `i += 1` (same for `--i` vs `i--` or `i -= 1`) | 2 |
-| [GAS-8](#GAS-8) | Using `private` rather than `public` for constants, saves gas | 3 |
-| [GAS-9](#GAS-9) | Increments/decrements can be unchecked in for-loops | 1 |
-| [GAS-10](#GAS-10) | Use != 0 instead of > 0 for unsigned integer comparison | 5 |
-### <a name="GAS-1"></a>[GAS-1] `a = a + b` is more gas effective than `a += b` for state variables (excluding arrays and mappings)
+| Issue | Instances |
+|---|:-:|
+| GAS-1: `a = a + b` is more gas effective than `a += b` for state variables (excluding arrays and mappings) | 2 |
+| GAS-2: Use assembly to check for `address(0)` | 3 |
+| GAS-3: State variables should be cached in stack variables rather than re-reading them from storage | 2 |
+| GAS-4: For Operations that will not overflow, you could use unchecked | 18 |
+| GAS-5: Use Custom Errors instead of Revert Strings to save Gas | 1 |
+| GAS-6: Functions guaranteed to revert when called by normal users can be marked `payable` | 2 |
+| GAS-7: `++i` costs less gas compared to `i++` or `i += 1` (same for `--i` vs `i--` or `i -= 1`) | 2 |
+| GAS-8: Using `private` rather than `public` for constants, saves gas | 3 |
+| GAS-9: Increments/decrements can be unchecked in for-loops | 1 |
+| GAS-10: Use != 0 instead of > 0 for unsigned integer comparison | 5 |
+### [GAS-1] `a = a + b` is more gas effective than `a += b` for state variables (excluding arrays and mappings)
 This saves **16 gas per instance.**
 
 *Instances (2)*:
@@ -30,7 +30,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="GAS-2"></a>[GAS-2] Use assembly to check for `address(0)`
+### [GAS-2] Use assembly to check for `address(0)`
 *Saves 6 gas per instance*
 
 *Instances (3)*:
@@ -46,7 +46,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="GAS-3"></a>[GAS-3] State variables should be cached in stack variables rather than re-reading them from storage
+### [GAS-3] State variables should be cached in stack variables rather than re-reading them from storage
 The instances below point to the second+ access of a state variable within a function. Caching of a state variable replaces each Gwarmaccess (100 gas) with a much cheaper stack read. Other less obvious fixes/optimizations include having local memory caches of state variable structs, or having local caches of state variable contracts/addresses.
 
 *Saves 100 gas per instance*
@@ -62,7 +62,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="GAS-4"></a>[GAS-4] For Operations that will not overflow, you could use unchecked
+### [GAS-4] For Operations that will not overflow, you could use unchecked
 
 *Instances (18)*:
 ```solidity
@@ -107,7 +107,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="GAS-5"></a>[GAS-5] Use Custom Errors instead of Revert Strings to save Gas
+### [GAS-5] Use Custom Errors instead of Revert Strings to save Gas
 Custom errors are available from solidity version 0.8.4. Custom errors save [**~50 gas**](https://gist.github.com/IllIllI000/ad1bd0d29a0101b25e57c293b4b0c746) each time they're hit by [avoiding having to allocate and store the revert string](https://blog.soliditylang.org/2021/04/21/custom-errors/#errors-in-depth). Not defining the strings also save deployment gas
 
 Additionally, custom errors can be used inside and outside of contracts (including interfaces and libraries).
@@ -127,7 +127,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="GAS-6"></a>[GAS-6] Functions guaranteed to revert when called by normal users can be marked `payable`
+### [GAS-6] Functions guaranteed to revert when called by normal users can be marked `payable`
 If a function modifier such as `onlyOwner` is used, the function will revert if a normal user tries to pay the function. Marking the function as `payable` will lower the gas cost for legitimate callers because the compiler will not include checks for whether a payment was provided.
 
 *Instances (2)*:
@@ -141,7 +141,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="GAS-7"></a>[GAS-7] `++i` costs less gas compared to `i++` or `i += 1` (same for `--i` vs `i--` or `i -= 1`)
+### [GAS-7] `++i` costs less gas compared to `i++` or `i += 1` (same for `--i` vs `i--` or `i -= 1`)
 Pre-increments and pre-decrements are cheaper.
 
 For a `uint256 i` variable, the following is true with the Optimizer enabled at 10k:
@@ -191,7 +191,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="GAS-8"></a>[GAS-8] Using `private` rather than `public` for constants, saves gas
+### [GAS-8] Using `private` rather than `public` for constants, saves gas
 If needed, the values can be read from the verified contract source code, or if there are multiple values there can be a single getter function that [returns a tuple](https://github.com/code-423n4/2022-08-frax/blob/90f55a9ce4e25bceed3a74290b854341d8de6afa/src/contracts/FraxlendPair.sol#L156-L178) of the values of all currently-public constants. Saves **3406-3606 gas** in deployment gas due to the compiler not having to create non-payable getter functions for deployment calldata, not having to store the bytes of the value outside of where it's used, and not adding another entry to the method ID table
 
 *Instances (3)*:
@@ -207,7 +207,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="GAS-9"></a>[GAS-9] Increments/decrements can be unchecked in for-loops
+### [GAS-9] Increments/decrements can be unchecked in for-loops
 In Solidity 0.8+, there's a default overflow check on unsigned integers. It's possible to uncheck this in for-loops and save some gas at each iteration, but at the cost of some code readability, as this uncheck cannot be made inline.
 
 [ethereum/solidity#10695](https://github.com/ethereum/solidity/issues/10695)
@@ -237,7 +237,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="GAS-10"></a>[GAS-10] Use != 0 instead of > 0 for unsigned integer comparison
+### [GAS-10] Use != 0 instead of > 0 for unsigned integer comparison
 
 *Instances (5)*:
 ```solidity
@@ -260,23 +260,23 @@ File: EmberLottery.sol
 ## Non Critical Issues
 
 
-| |Issue|Instances|
-|-|:-|:-:|
-| [NC-1](#NC-1) | Use `string.concat()` or `bytes.concat()` instead of `abi.encodePacked` | 4 |
-| [NC-2](#NC-2) | Control structures do not follow the Solidity Style Guide | 13 |
-| [NC-3](#NC-3) | Consider disabling `renounceOwnership()` | 1 |
-| [NC-4](#NC-4) | Unused `error` definition | 2 |
-| [NC-5](#NC-5) | Functions should not be longer than 50 lines | 7 |
-| [NC-6](#NC-6) | Missing Event for critical parameters change | 1 |
-| [NC-7](#NC-7) | NatSpec is completely non-existent on functions that should have them | 1 |
-| [NC-8](#NC-8) | Consider using named mappings | 4 |
-| [NC-9](#NC-9) | Adding a `return` statement when the function defines a named return variable, is redundant | 1 |
-| [NC-10](#NC-10) | Take advantage of Custom Error's return value property | 13 |
-| [NC-11](#NC-11) | Contract does not follow the Solidity style guide's suggested layout ordering | 1 |
-| [NC-12](#NC-12) | Use Underscores for Number Literals (add an underscore every 3 digits) | 1 |
-| [NC-13](#NC-13) | Event is missing `indexed` fields | 5 |
-| [NC-14](#NC-14) | Variables need not be initialized to zero | 1 |
-### <a name="NC-1"></a>[NC-1] Use `string.concat()` or `bytes.concat()` instead of `abi.encodePacked`
+| Issue | Instances |
+|---|:-:|
+| NC-1: Use `string.concat()` or `bytes.concat()` instead of `abi.encodePacked` | 4 |
+| NC-2: Control structures do not follow the Solidity Style Guide | 13 |
+| NC-3: Consider disabling `renounceOwnership()` | 1 |
+| NC-4: Unused `error` definition | 2 |
+| NC-5: Functions should not be longer than 50 lines | 7 |
+| NC-6: Missing Event for critical parameters change | 1 |
+| NC-7: NatSpec is completely non-existent on functions that should have them | 1 |
+| NC-8: Consider using named mappings | 4 |
+| NC-9: Adding a `return` statement when the function defines a named return variable, is redundant | 1 |
+| NC-10: Take advantage of Custom Error's return value property | 13 |
+| NC-11: Contract does not follow the Solidity style guide's suggested layout ordering | 1 |
+| NC-12: Use Underscores for Number Literals (add an underscore every 3 digits) | 1 |
+| NC-13: Event is missing `indexed` fields | 5 |
+| NC-14: Variables need not be initialized to zero | 1 |
+### [NC-1] Use `string.concat()` or `bytes.concat()` instead of `abi.encodePacked`
 Solidity version 0.8.4 introduces `bytes.concat()` (vs `abi.encodePacked(<bytes>,<bytes>)`)
 
 Solidity version 0.8.12 introduces `string.concat()` (vs `abi.encodePacked(<str>,<str>), which catches concatenation errors (in the event of a `bytes` data mixed in the concatenation)`)
@@ -296,7 +296,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-2"></a>[NC-2] Control structures do not follow the Solidity Style Guide
+### [NC-2] Control structures do not follow the Solidity Style Guide
 See the [control structures](https://docs.soliditylang.org/en/latest/style-guide.html#control-structures) section of the Solidity Style Guide
 
 *Instances (13)*:
@@ -332,7 +332,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-3"></a>[NC-3] Consider disabling `renounceOwnership()`
+### [NC-3] Consider disabling `renounceOwnership()`
 If the plan for your project does not include eventually giving up all ownership control, consider overwriting OpenZeppelin's `Ownable`'s `renounceOwnership()` function in order to disable it.
 
 *Instances (1)*:
@@ -344,7 +344,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-4"></a>[NC-4] Unused `error` definition
+### [NC-4] Unused `error` definition
 Note that there may be cases where an error superficially appears to be used, but this is only because there are multiple definitions of the error in different files. In such cases, the error definition should be moved into a separate file. The instances below are the unused definitions.
 
 *Instances (2)*:
@@ -358,7 +358,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-5"></a>[NC-5] Functions should not be longer than 50 lines
+### [NC-5] Functions should not be longer than 50 lines
 Overly complex code can make understanding functionality more difficult, try to further modularize your code to ensure readability 
 
 *Instances (7)*:
@@ -382,7 +382,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-6"></a>[NC-6] Missing Event for critical parameters change
+### [NC-6] Missing Event for critical parameters change
 Events help non-contract tools to track changes, and events prevent users from being surprised by changes.
 
 *Instances (1)*:
@@ -396,7 +396,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-7"></a>[NC-7] NatSpec is completely non-existent on functions that should have them
+### [NC-7] NatSpec is completely non-existent on functions that should have them
 Public and external functions that aren't view or pure should have NatSpec comments
 
 *Instances (1)*:
@@ -408,7 +408,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-8"></a>[NC-8] Consider using named mappings
+### [NC-8] Consider using named mappings
 Consider moving to solidity version 0.8.18 or later, and using [named mappings](https://ethereum.stackexchange.com/questions/51629/how-to-name-the-arguments-in-mapping/145555#145555) to make it easier to understand the purpose of each mapping
 
 *Instances (4)*:
@@ -426,7 +426,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-9"></a>[NC-9] Adding a `return` statement when the function defines a named return variable, is redundant
+### [NC-9] Adding a `return` statement when the function defines a named return variable, is redundant
 
 *Instances (1)*:
 ```solidity
@@ -450,7 +450,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-10"></a>[NC-10] Take advantage of Custom Error's return value property
+### [NC-10] Take advantage of Custom Error's return value property
 An important feature of Custom Error is that values such as address, tokenID, msg.value can be written inside the () sign, this kind of approach provides a serious advantage in debugging and examining the revert details of dapps such as tenderly.
 
 *Instances (13)*:
@@ -486,7 +486,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-11"></a>[NC-11] Contract does not follow the Solidity style guide's suggested layout ordering
+### [NC-11] Contract does not follow the Solidity style guide's suggested layout ordering
 The [style guide](https://docs.soliditylang.org/en/v0.8.16/style-guide.html#order-of-layout) says that, within a contract, the ordering should be:
 
 1) Type declarations
@@ -579,7 +579,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-12"></a>[NC-12] Use Underscores for Number Literals (add an underscore every 3 digits)
+### [NC-12] Use Underscores for Number Literals (add an underscore every 3 digits)
 
 *Instances (1)*:
 ```solidity
@@ -590,7 +590,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-13"></a>[NC-13] Event is missing `indexed` fields
+### [NC-13] Event is missing `indexed` fields
 Index event fields make the field more quickly accessible to off-chain tools that parse events. However, note that each index field costs extra gas during emission, so it's not necessarily best to index the maximum allowed per event (three fields). Each event should use three indexed fields if there are three or more fields, and gas usage is not particularly of concern for the events in question. If there are fewer than three fields, all of the fields should be indexed.
 
 *Instances (5)*:
@@ -610,7 +610,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="NC-14"></a>[NC-14] Variables need not be initialized to zero
+### [NC-14] Variables need not be initialized to zero
 The default value for variables is zero, so initializing them to zero is superfluous.
 
 *Instances (1)*:
@@ -626,15 +626,15 @@ File: EmberLottery.sol
 ## Low Issues
 
 
-| |Issue|Instances|
-|-|:-|:-:|
-| [L-1](#L-1) | Use a 2-step ownership transfer pattern | 1 |
-| [L-2](#L-2) | `abi.encodePacked()` should not be used with dynamic types when passing the result to a hash function such as `keccak256()` | 1 |
-| [L-3](#L-3) | Loss of precision | 1 |
-| [L-4](#L-4) | Solidity version 0.8.20+ may not work on other chains due to `PUSH0` | 1 |
-| [L-5](#L-5) | Use `Ownable2Step.transferOwnership` instead of `Ownable.transferOwnership` | 1 |
-| [L-6](#L-6) | Upgradeable contract not initialized | 1 |
-### <a name="L-1"></a>[L-1] Use a 2-step ownership transfer pattern
+| Issue | Instances |
+|---|:-:|
+| L-1: Use a 2-step ownership transfer pattern | 1 |
+| L-2: `abi.encodePacked()` should not be used with dynamic types when passing the result to a hash function such as `keccak256()` | 1 |
+| L-3: Loss of precision | 1 |
+| L-4: Solidity version 0.8.20+ may not work on other chains due to `PUSH0` | 1 |
+| L-5: Use `Ownable2Step.transferOwnership` instead of `Ownable.transferOwnership` | 1 |
+| L-6: Upgradeable contract not initialized | 1 |
+### [L-1] Use a 2-step ownership transfer pattern
 Recommend considering implementing a two step process where the owner or admin nominates an account and the nominated account needs to call an `acceptOwnership()` function for the transfer of ownership to fully succeed. This ensures the nominated EOA account is a valid and active account. Lack of two-step procedure for critical operations leaves them error-prone. Consider adding two step procedure on the critical functions.
 
 *Instances (1)*:
@@ -646,7 +646,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="L-2"></a>[L-2] `abi.encodePacked()` should not be used with dynamic types when passing the result to a hash function such as `keccak256()`
+### [L-2] `abi.encodePacked()` should not be used with dynamic types when passing the result to a hash function such as `keccak256()`
 Use `abi.encode()` instead which will pad items to 32 bytes, which will [prevent hash collisions](https://docs.soliditylang.org/en/v0.8.13/abi-spec.html#non-standard-packed-mode) (e.g. `abi.encodePacked(0x123,0x456)` => `0x123456` => `abi.encodePacked(0x1,0x23456)`, but `abi.encode(0x123,0x456)` => `0x0...1230...456`). "Unless there is a compelling reason, `abi.encode` should be preferred". If there is only one argument to `abi.encodePacked()` it can often be cast to `bytes()` or `bytes32()` [instead](https://ethereum.stackexchange.com/questions/30912/how-to-compare-strings-in-solidity#answer-82739).
 If all arguments are strings and or bytes, `bytes.concat()` should be used instead
 
@@ -659,7 +659,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="L-3"></a>[L-3] Loss of precision
+### [L-3] Loss of precision
 Division by large numbers may result in the result being zero, due to solidity not supporting fractions. Consider requiring a minimum amount for the numerator to ensure that it is always larger than the denominator
 
 *Instances (1)*:
@@ -671,7 +671,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="L-4"></a>[L-4] Solidity version 0.8.20+ may not work on other chains due to `PUSH0`
+### [L-4] Solidity version 0.8.20+ may not work on other chains due to `PUSH0`
 The compiler for Solidity 0.8.20 switches the default target EVM version to [Shanghai](https://blog.soliditylang.org/2023/05/10/solidity-0.8.20-release-announcement/#important-note), which includes the new `PUSH0` op code. This op code may not yet be implemented on all L2s, so deployment on these chains will fail. To work around this issue, use an earlier [EVM](https://docs.soliditylang.org/en/v0.8.20/using-the-compiler.html?ref=zaryabs.com#setting-the-evm-version-to-target) [version](https://book.getfoundry.sh/reference/config/solidity-compiler#evm_version). While the project itself may or may not compile with 0.8.20, other projects with which it integrates, or which extend this project may, and those projects will have problems deploying these contracts/libraries.
 
 *Instances (1)*:
@@ -683,7 +683,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="L-5"></a>[L-5] Use `Ownable2Step.transferOwnership` instead of `Ownable.transferOwnership`
+### [L-5] Use `Ownable2Step.transferOwnership` instead of `Ownable.transferOwnership`
 Use [Ownable2Step.transferOwnership](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable2Step.sol) which is safer. Use it as it is more secure due to 2-stage ownership transfer.
 
 **Recommended Mitigation Steps**
@@ -707,7 +707,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="L-6"></a>[L-6] Upgradeable contract not initialized
+### [L-6] Upgradeable contract not initialized
 Upgradeable contracts are initialized via an initializer function rather than by a constructor. Leaving such a contract uninitialized may lead to it being taken over by a malicious user
 
 *Instances (1)*:
@@ -723,11 +723,11 @@ File: EmberLottery.sol
 ## Medium Issues
 
 
-| |Issue|Instances|
-|-|:-|:-:|
-| [M-1](#M-1) | `block.number` means different things on different L2s | 4 |
-| [M-2](#M-2) | Centralization Risk for trusted owners | 4 |
-### <a name="M-1"></a>[M-1] `block.number` means different things on different L2s
+| Issue | Instances |
+|---|:-:|
+| M-1: `block.number` means different things on different L2s | 4 |
+| M-2: Centralization Risk for trusted owners | 4 |
+### [M-1] `block.number` means different things on different L2s
 On Optimism, `block.number` is the L2 block number, but on Arbitrum, it's the L1 block number, and `ArbSys(address(100)).arbBlockNumber()` must be used. Furthermore, L2 block numbers often occur much more frequently than L1 block numbers (any may even occur on a per-transaction basis), so using block numbers for timing results in inconsistencies, especially when voting is involved across multiple chains. As of version 4.9, OpenZeppelin has [modified](https://blog.openzeppelin.com/introducing-openzeppelin-contracts-v4.9#governor) their governor code to use a clock rather than block numbers, to avoid these sorts of issues, but this still requires that the project [implement](https://docs.openzeppelin.com/contracts/4.x/governance#token_2) a [clock](https://eips.ethereum.org/EIPS/eip-6372) for each L2.
 
 *Instances (4)*:
@@ -745,7 +745,7 @@ File: EmberLottery.sol
 ```
 🔗 [View on GitHub](https://github.com/emberdragonc/ember-lottery/blob/main/EmberLottery.sol)
 
-### <a name="M-2"></a>[M-2] Centralization Risk for trusted owners
+### [M-2] Centralization Risk for trusted owners
 
 #### Impact:
 Contracts have owners with privileged rights to perform admin tasks and need to be trusted to not perform malicious updates or drain funds.
