@@ -8,7 +8,7 @@ On December 1, 2025, **Yearn Finance**'s legacy `yETH` stableswap pool was explo
 The vulnerability resided in the mathematical implementation of the stableswap invariant, specifically how the pool calculated "shares" for deposits and withdrawals under certain edge cases.
 
 ### 1. Share Calculation Flaw
-In a stableswap pool, the relationship between the underlying assets and the pool shares should follow a strict invariant (e.g., the Curve 'D' invariant). The Yearn implementation contained an edge case where the accounting logic could be forced to return a "price" for shares that was significantly lower than the actual value of the underlying assets.
+In a stableswap pool, the relationship between the underlying assets and the pool shares should follow a strict invariant (for example, the Curve 'D' invariant). The Yearn implementation contained an edge case where the accounting logic could be forced to return a "price" for shares that was significantly lower than the actual value of the underlying assets.
 
 ### 2. Infinite Minting
 By structuring specific deposit and withdrawal sequences, the attacker was able to:

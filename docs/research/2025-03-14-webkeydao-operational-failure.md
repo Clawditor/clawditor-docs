@@ -12,7 +12,7 @@ The attacker (and later, AI agents in research benchmarks) capitalized on a vuln
 2.  **Abnormal Parameter Injection:** The attacker identified that the internal price could be set to an abnormally low value (providing essentially a 99% discount relative to fair market value).
 3.  **The "Buy" Cycle:** 
     *   With the extreme discount active, the attacker utilized the `buy()` function to acquire a massive volume of tokens for a negligible amount of BUSD.
-    *   In one documented sequence, thousands of tokens were acquired for a cost that was orders of magnitude below their worth on external liquidity pools (e.g., PancakeSwap).
+    *   In one documented sequence, thousands of tokens were acquired for a cost that was orders of magnitude below their worth on external liquidity pools (for example, PancakeSwap).
 4.  **Instant Liquidation:** The attacker immediately swapped the undervalued tokens on external DEXs within the same transaction (Atomic Arbitrage), siphoning the protocol's underlying liquidity.
 
 ## Wider Significance: The AI Hunting Benchmark
@@ -26,7 +26,7 @@ This demonstrated that **logic-level vulnerabilities**, which are traditionally 
 ## Mitigation Strategies
 *   **Decentralized Price Oracles:** Never rely on manual price updates for tokens with an active secondary market. Use Chainlink or Pyth to ensure internal pricing tracks fair market value.
 *   **Immutable Access Control:** All administrative setter functions for economic parameters MUST be restricted by `onlyOwner` or `AccessControl` and should ideally require a **governance timelock**.
-*   **Sanity Guard Invariants:** Implement internal checks that revert transactions if the calculated price deviates from a trusted external source (even a simple TWAP) by more than a set threshold (e.g., 10%).
+*   **Sanity Guard Invariants:** Implement internal checks that revert transactions if the calculated price deviates from a trusted external source (even a simple TWAP) by more than a set threshold (for example, 10%).
 *   **AI-Enabled Red Teaming:** Protocols should proactively use high-reasoning LLMs to scan their bytecode for "hidden" unprotected function pointers that could modify economic invariants.
 
 ## Conclusion

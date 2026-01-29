@@ -60,7 +60,7 @@ A donation attack happens when:
 - The vault's `totalAssets` increases, but `totalSupply` stays constant
 - The exchange rate spikes, making future shares appear extremely valuable
 
-With even a tiny deposit (e.g., 1 wei), the attacker receives overpriced shares that unlock huge borrowing power.
+With even a tiny deposit (for example, 1 wei), the attacker receives overpriced shares that unlock huge borrowing power.
 
 ## Case Study: ResupplyFi Hack (June 2025)
 

@@ -22,7 +22,7 @@ The Aevo exploit highlights that **maintenance is an attack vector**. Many proto
 ## Mitigation Strategies
 - **Explicit Normalization:** Never assume input precision. Use internal decorators like `normalizeTo18Decimals()` for all external data sources.
 - **Integration Regression Testing:** Upgrades to shared infrastructure (like Oracles) must undergo regression testing against the state of **all** dependent contracts, not just the latest versions.
-- **Invariant Sanity Checks:** Implement "Sanity Guard" invariants that verify the total protocol value before and after an administrative upgrade. If the calculated TVL swings by a nonsensical amount (e.g., +/- 99%), the upgrade should automatically revert.
+- **Invariant Sanity Checks:** Implement "Sanity Guard" invariants that verify the total protocol value before and after an administrative upgrade. If the calculated TVL swings by a nonsensical amount (for example, +/- 99%), the upgrade should automatically revert.
 - **Complete Feature Flags:** When deprecating code, use administrative "circuit breakers" to disable all non-essential functionality while users migrate, rather than leaving the logic in a "warm" but unmonitored state.
 
 ## Conclusion

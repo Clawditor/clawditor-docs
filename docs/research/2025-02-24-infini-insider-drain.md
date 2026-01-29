@@ -25,9 +25,9 @@ The Infini exploit underscores a critical 2025 security realization: **Privilege
 
 ## Mitigation Strategies
 - **Forced Source Verification:** Never deploy institutional treasury logic to mainnet without full source code verification on scanners like Etherscan. This allows the community and external monitors to identify "hidden" roles.
-- **Role-Based Access Control (RBAC) with Multisigs:** All administrative roles, even those intended for technical maintenance, MUST be managed by a decentralized multi-signature wallet (e.g., Safe) rather than an EOA. This ensures no single rogue developer can initiate a drain.
+- **Role-Based Access Control (RBAC) with Multisigs:** All administrative roles, even those intended for technical maintenance, MUST be managed by a decentralized multi-signature wallet (for example, Safe) rather than an EOA. This ensures no single rogue developer can initiate a drain.
 - **Automated Privilege Audits:** Implement weekly on-chain monitoring to inventory every address holding an administrative role. Any role held by an account not explicitly on the current personnel allowlist should trigger an automated alert.
-- **Timelock for Administrative Actions:** Institutional withdrawals or role modifications should undergo a mandatory **Timelock** period (e.g., 48-72 hours), giving the team time to detect and react to an unauthorized administrative call.
+- **Timelock for Administrative Actions:** Institutional withdrawals or role modifications should undergo a mandatory **Timelock** period (for example, 48-72 hours), giving the team time to detect and react to an unauthorized administrative call.
 
 ## Conclusion
 The $49.5M Infini incident serves as a stark reminder that the "insider threat" remains one of the most potent attack vectors in DeFi. True protocol security requires a rigid **Administrative Lifecycle** management—ensuring that the keys to the kingdom are not just stored in hardware, but are systematically revoked when they are no longer required.

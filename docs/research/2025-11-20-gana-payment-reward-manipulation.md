@@ -25,8 +25,8 @@ The GANA Payment exploit highlights two recurring failures in DeFi security:
 *   **Missing Multi-Level Protection:** The protocol's core economic parameters (reward rates) were either unprotected or protected by a single, bypassable check. 
 
 ## Mitigation Strategies
-*   **Avoid `tx.origin` for Auth:** Never use `tx.origin` for authorization. If you must check if a caller is a contract, use `msg.sender.code.length > 0`, though this also has caveats (e.g., calls from constructors).
-*   **Administrative Multisigs:** Critical parameters like `rewardRate` should **require** a multi-signature approval (e.g., Gnosis Safe) and ideally be behind a **Timelock** contract.
+*   **Avoid `tx.origin` for Auth:** Never use `tx.origin` for authorization. If you must check if a caller is a contract, use `msg.sender.code.length > 0`, though this also has caveats (for example, calls from constructors).
+*   **Administrative Multisigs:** Critical parameters like `rewardRate` should **require** a multi-signature approval (for example, Gnosis Safe) and ideally be behind a **Timelock** contract.
 *   **Sanity Bounds:** Implement hard-coded minimum and maximum bounds for rewards. A function that updates a rate should always check if the new rate is within a "sane" operational range.
 *   **Audit-First Culture:** GANA Payment lacked a comprehensive public audit at the time of the exploit. Projects involving millions in TVL must undergo multiple independent audits before launching high-payout staking mechanisms.
 

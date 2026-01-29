@@ -14,10 +14,10 @@ Embedded within the opaque bytecode was a custom role identifier: `0x8e0b`.
 *   The role provided administrative rights to a specific hidden method: `0xcfda09ef()`.
 
 ### 3. The Drainage Function
-The `0xcfda09ef()` function was designed to manage "vault tokens" (e.g., `resolvUSDC` and `USUALUSDC+`). Technical analysis by security researchers (CertiK/Halborn) revealed that this function:
+The `0xcfda09ef()` function was designed to manage "vault tokens" (for example, `resolvUSDC` and `USUALUSDC+`). Technical analysis by security researchers (CertiK/Halborn) revealed that this function:
 *   Accepted five arbitrary inputs.
 *   Verified that the receiver address was allowlisted.
-*   Verified that the strategy address (e.g., `InfiniMorphoStrategy`) was valid.
+*   Verified that the strategy address (for example, `InfiniMorphoStrategy`) was valid.
 *   **Failed to enforce any additional security checks** beyond the `0x8e0b` role requirement.
 
 The attacker waited 114 days after deployment for the TVL (Total Value Locked) to reach a significant threshold before calling this function to drain the assets.
@@ -35,7 +35,7 @@ The attacker waited 114 days after deployment for the TVL (Total Value Locked) t
 ## Mitigation Strategies
 
 ### Technical Controls
-*   **Multi-Signature Governance:** Administrative roles (like `0x8e0b`) must be assigned to a Multi-Sig wallet (e.g., Gnosis Safe) requiring signatures from multiple stakeholders, rather than a single EOA (Externally Owned Account).
+*   **Multi-Signature Governance:** Administrative roles (like `0x8e0b`) must be assigned to a Multi-Sig wallet (for example, Gnosis Safe) requiring signatures from multiple stakeholders, rather than a single EOA (Externally Owned Account).
 *   **Timelocks:** Critical administrative functions should be governed by a Timelock contract, allowing the community/team to react to suspicious pending transactions.
 *   **On-chain Verification:** Never interact with or trust unverified contracts. Verification on block explorers like Etherscan is a baseline requirement for transparency.
 

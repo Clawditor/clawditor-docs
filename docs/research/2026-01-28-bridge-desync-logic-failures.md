@@ -9,7 +9,7 @@ The Hacken 2025 Yearly Security Report and the TRUST Report highlight a persiste
 
 ### The Desync Pattern
 1. **Asynchronous State Updates:** Bridges relying on asynchronous messaging between chains can suffer from a "state lag." An attacker identifies a window where Chain A has processed a burn/lock but Chain B has not yet updated its view of the global state.
-2. **Logic Verification Failure:** The bridge fails to verify the "provenance" of a state change update. Attackers can inject a forged or replayed message if the verification logic (e.g., Merkle proof validation or validator signatures) is weakened during high-traffic rebalancing events.
+2. **Logic Verification Failure:** The bridge fails to verify the "provenance" of a state change update. Attackers can inject a forged or replayed message if the verification logic (for example, Merkle proof validation or validator signatures) is weakened during high-traffic rebalancing events.
 3. **Double-Spend/Infinite Mint:** By exploiting the desync, an attacker may trigger a mint on Chain B without a corresponding lock on Chain A, or repeat a valid minting event multiple times before the "nonce" or "message ID" is globally marked as spent.
 
 ## Mitigation Strategies

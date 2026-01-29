@@ -12,7 +12,7 @@ The vulnerability occurred because the compiler failed to correctly implement th
 
 1.  **Multiple Entry Points:** The attacker called a function that triggered a transfer of native tokens to the attacker's contract.
 2.  **The Fallback:** When the attacker received the native tokens, their contract's `fallback()` function was executed.
-3.  **The Re-entry:** From the `fallback()` function, the attacker called back into a different function in the Curve pool (e.g., `remove_liquidity`).
+3.  **The Re-entry:** From the `fallback()` function, the attacker called back into a different function in the Curve pool (for example, `remove_liquidity`).
 4.  **Lock Failure:** Because of the compiler bug, the `@nonreentrant` guard on the second function failed to see that a lock was already active from the first function call. This allowed the attacker to manipulate the pool's internal state (balances) before the first transaction finished updating them.
 
 ## Famous Example: Curve alETH Pool

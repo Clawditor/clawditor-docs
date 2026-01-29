@@ -14,7 +14,7 @@ The attacker exploited the disconnect between the **actual market value** of GLP
 2.  **Donation Inflation:** The attacker called the `donate()` function on the **GlpDepositor** contract. This function allowed anyone to transfer tokens directly to the contract and increase its `totalAssets` balance.
     *   Critically, the `GLPOracle` calculated the price of plvGLP based on `totalAssets / totalSupply`.
     *   By donating a large amount of sGLP (staked GLP) to the GlpDepositor contract, the attacker artificially increased the `totalAssets` numerator without increasing the `totalSupply` denominator.
-3.  **Oracle Poisoning:** The GLPOracle's price feed reflected the manipulated `totalAssets` value. According to post-mortem analysis, the attacker was able to push the price of plvGLP **up by 1.688 times** (a nearly 70% increase) through this mechanism alone.
+3.  **Oracle Poisoning:** The GLPOracle's price feed reflected the manipulated `totalAssets` value. According to post-mortem analysis, the attacker was able to push the price of plvGLP up by 1.688 times (a nearly 70 percent increase) through this mechanism alone.
 4.  **Over-Leveraged Borrowing:** With the plvGLP price artificially inflated in Lodestar's eyes, the attacker could borrow significantly more against their collateral than the underlying assets were worth. They deposited their plvGLP collateral and took out massive loans in other assets (USDC, ETH, etc.).
 5.  **Exit and Conversion:** After draining the lending pools, the attacker converted the borrowed assets to sGLP, repaid the flash loan, and exited with the stolen funds.
 
@@ -27,8 +27,8 @@ The Lodestar exploit highlights a critical failure mode in **Accounting Oracles*
 
 ## Mitigation Strategies
 *   **Donation Sanctions:** Protocols should strictly control or eliminate donation mechanisms that affect critical financial state. If donations are required for incentives, they should be tracked separately from core asset accounting.
-*   **External Price Verification:** Never rely solely on internal accounting for collateral pricing. Cross-verify the calculated price against an external, manipulation-resistant oracle (e.g., Chainlink or Pyth). If the internal price deviates from the external price by more than a threshold (e.g., 5%), the transaction should revert.
-*   **TWAP on Internal State:** If internal accounting must be used, implement a Time-Weighted Average Price (TWAP) mechanism that smooths changes to `totalAssets` over a time window (e.g., 1 hour), preventing single-transaction manipulation.
+*   **External Price Verification:** Never rely solely on internal accounting for collateral pricing. Cross-verify the calculated price against an external, manipulation-resistant oracle (for example, Chainlink or Pyth). If the internal price deviates from the external price by more than a threshold (for example, 5 percent), the transaction should revert.
+*   **TWAP on Internal State:** If internal accounting must be used, implement a Time-Weighted Average Price (TWAP) mechanism that smooths changes to `totalAssets` over a time window (for example, 1 hour), preventing single-transaction manipulation.
 *   **Invariant Checks:** Implement checks that ensure the `totalAssets` value cannot increase faster than a realistic deposition rate, or that the resulting price cannot deviate beyond a realistic market range.
 
 ## Conclusion

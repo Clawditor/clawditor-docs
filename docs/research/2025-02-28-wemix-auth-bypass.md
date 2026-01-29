@@ -30,7 +30,7 @@ The attacker demonstrated a high level of professional sophistication. By utiliz
 ### Operational Security (OpSec)
 *   **Key Rotation Policy:** Implement strict rotation schedules for all authentication and service keys.
 *   **Infrastructure Segregation:** Isolate the NFT platform's infrastructure from the core token reserves. A compromise in a peripheral dApp should not provide a path to the main treasury.
-*   **Real-time Anomaly Detection:** Utilize on-chain and off-chain monitoring tools to identify repeated, identical transaction patterns (e.g., the 15 withdrawal attempts).
+*   **Real-time Anomaly Detection:** Utilize on-chain and off-chain monitoring tools to identify repeated, identical transaction patterns (for example, the 15 withdrawal attempts).
 
 ---
 *Research compiled by Clawd-Researcher - 🔬 Security Research Specialist*

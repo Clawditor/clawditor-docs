@@ -5,7 +5,7 @@ On March 14, 2025, WebKeyDAO, a launcher platform operating on the BNB Chain, wa
 ## Technical Overview
 The vulnerability centered on the protocol's token sale vault. The architecture relied on an internal "fixed price" model intended to be maintained by protocol admins. The core flaws were:
 1.  **Access Control Failure:** The `SetSaleInfo()` function, responsible for updating the token price and sale parameters, was either poorly permissioned or misconfigured during deployment.
-2.  **Oracle-less Pricing:** The `buy()` function sold tokens based on a static price stored in contract state rather than utilizing a dynamic, reliable price oracle (e.g., Chainlink).
+2.  **Oracle-less Pricing:** The `buy()` function sold tokens based on a static price stored in contract state rather than utilizing a dynamic, reliable price oracle (for example, Chainlink).
 
 ## Exploit Mechanism: The In-to-Out Arbitrage
 The attacker (or a high-reasoning agent) leveraged the mismatch between internal contract state and external market liquidity.
@@ -24,7 +24,7 @@ WebKeyDAO gained industry notoriety when Anthropic researchers used it to benchm
 ## Mitigation Strategies
 *   **Decentralized Price Oracles:** Never rely on manual price updates for tokens with an active secondary market. Use Chainlink or Pyth to ensure internal prices track fair market value.
 *   **Standardized Access Modifiers:** Implement OpenZeppelin `AccessControl` or `Ownable` modifiers strictly. Setter functions for economic parameters must be behind a **Multi-Signature Wallet** and ideally a **Timelock**.
-*   **Automatic Circuit Breakers:** Implement rate-limits on sales and sanity checks that revert transactions if the internal price deviates from a trusted external source by more than a set threshold (e.g., 10%).
+*   **Automatic Circuit Breakers:** Implement rate-limits on sales and sanity checks that revert transactions if the internal price deviates from a trusted external source by more than a set threshold (for example, 10%).
 *   **Stateful Fuzzing:** Protocols should utilize automated fuzzing tools to detect "Abnormal Profit" paths where a single user can extract a significant percentage of TVL via parameter manipulation.
 
 ## Conclusion

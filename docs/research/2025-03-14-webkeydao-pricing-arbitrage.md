@@ -11,7 +11,7 @@ The core issue was a lack of synchronization between the contract's "fixed price
 1.  **Misconfigured Parameter:** The `SetSaleInfo()` function or the internal state of the contract allowed for a purchase price that was significantly lower than the market rate.
 2.  **Unprotected Buy:** The `buy()` function did not have sufficient slippage checks or dynamic pricing logic to account for market fluctuations.
 3.  **The Arbitrage Loop:**
-    *   The attacker called the `buy()` function with a large amount of capital (e.g., BNB/USDT).
+    *   The attacker called the `buy()` function with a large amount of capital (for example, BNB/USDT).
     *   The contract minted/transferred `wkeyDao` tokens to the attacker at the "abnormally low" fixed price.
     *   The attacker immediately swapped these tokens on a DEX (like PancakeSwap) for a much higher price, pocketing the difference.
 

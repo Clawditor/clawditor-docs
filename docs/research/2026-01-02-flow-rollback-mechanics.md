@@ -20,7 +20,7 @@ The Flow recovery is one of the most successful **large-scale asset recoveries**
 - **The "Validator Precedent":** Proponents highlighted that 98%+ consensus constitutes a legitimate decentralized governance action taken to protect protocol integrity.
 
 ## Mitigation Strategies for Network Designers
-*   **Built-in Invariant Monitoring:** Layer 1 networks should implement "Critical Invariant Watches" (e.g., total supply sanity checks) that can automatically pause the execution layer if fundamental rules are broken.
+*   **Built-in Invariant Monitoring:** Layer 1 networks should implement "Critical Invariant Watches" (for example, total supply sanity checks) that can automatically pause the execution layer if fundamental rules are broken.
 *   **Pre-negotiated Recovery Frameworks:** Communities should draft policies for specialized emergency upgrades *before* an exploit occurs to reduce the "panic window" and increase transparency.
 *   **Consistency Proofs:** In dual-environment chains (like Cadence/EVM), automated tools must continuously prove that state changes in one environment are correctly and securely reflected in the other.
 

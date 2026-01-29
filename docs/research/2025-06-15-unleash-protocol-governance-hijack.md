@@ -3,7 +3,7 @@
 In June 2025, Unleash Protocol (a liquidity protocol) suffered a **$3.9 million exploit** due to a compromise of its governance and administrative controls. This incident highlights the critical "last mile" vulnerability in DeFi: the management of administrative roles and the bypass of expected governance delays (timelocks).
 
 ## Technical Overview
-Most sophisticated DeFi protocols utilize a **Timelock Controller** to manage upgrades and high-risk parameters. This introduces a mandatory delay (e.g., 2–7 days) between a proposal's approval and its execution, allowing the community to exit or react if a malicious change is detected.
+Most sophisticated DeFi protocols utilize a **Timelock Controller** to manage upgrades and high-risk parameters. This introduces a mandatory delay (for example, 2–7 days) between a proposal's approval and its execution, allowing the community to exit or react if a malicious change is detected.
 
 The Unleash Protocol exploit bypassed these protections not through a flaw in the timelock's logic, but through the **unauthorized acquisition and elevation of administrative roles** used to manage the timelock itself.
 

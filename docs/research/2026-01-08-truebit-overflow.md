@@ -21,7 +21,7 @@ This exploit highlights the danger of **legacy technical debt** in stable protoc
 *   **Version Upgrade:** Protocols must systematically migrate or deprecate contracts written in pre-0.8.0 Solidity. If logic is immutable, protocols should look for ways to layer newer, safer governance-controlled wrappers over them.
 *   **Arithmetic Guardians:** Always use `SafeMath` for any Solidity version below 0.8.0. For modern code, continue to use the default checked arithmetic.
 *   **Security for Legacy Blocks:** Closed-source and legacy contracts should undergo recurring security reviews using modern decompilation and auditing tools, as the threat landscape and attacker capabilities (including AI-driven fuzzing) evolve.
-*   **Price Deviation Invariants:** Implement "circuit breakers" that compare calculated minting prices against a rolling average or a trusted oracle. If the calculated price drops by >90% in a single transaction, the function should automatically revert.
+*   **Price Deviation Invariants:** Implement "circuit breakers" that compare calculated minting prices against a rolling average or a trusted oracle. If the calculated price drops by > 90 percent in a single transaction, the function should automatically revert.
 
 ## Conclusion
 The Truebit heist is a sobering reminder that **smart contract security has an expiration date**. As development standards improve, older contracts sitting on the blockchain become increasingly large "bullseyes" for attackers. True security requires not just a safe launch, but a proactive strategy for maintaining and eventually sunsetting legacy on-chain infrastructure.

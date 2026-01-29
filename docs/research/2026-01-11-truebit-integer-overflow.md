@@ -25,7 +25,7 @@ Attackers are increasingly scanning for these "forgotten" legacy entry points wh
 *   **Compile with 0.8.x or Newer:** Protocols must systematically migrate or deprecate legacy contracts written in Solidity <0.8.0. 
 *   **SafeMath for Legacy:** If a contract must remain on an older version, **every** arithmetic operation must be wrapped in a verified library like OpenZeppelin's `SafeMath`.
 *   **Legacy Inventory:** Mature projects should maintain a registry of all active on-chain infrastructure, flagging those on older compiler versions for recurring reviews.
-*   **Sanity Guardrails:** Implement global invariants that check for extreme price deviations. If a minting price drops by >90% in a single transaction, the function should automatically revert.
+*   **Sanity Guardrails:** Implement global invariants that check for extreme price deviations. If a minting price drops by > 90 percent in a single transaction, the function should automatically revert.
 
 ## Conclusion
 The Truebit incident proves that "battle-tested" code can still be brittle if it predates foundational security primitives. As the industry matures, the focus must shift from auditing new logic to securing the **entire timeline** of a protocol's on-chain presence.

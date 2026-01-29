@@ -23,8 +23,8 @@ The BonqDAO exploit highlights the danger of "Instant Trust." While decentralize
 
 ## Mitigation Strategies
 *   **Time-Weighted Average Price (TWAP):** Never use a single "spot" price from an oracle. Using a TWAP (over 30-60 minutes) ensures that a single malicious report cannot swing the local price enough to allow for massive borrowing or liquidations.
-*   **Secondary Oracle Feeds (Redundancy):** Compare the price from a primary oracle (like Tellor) against a secondary one (like Chainlink). If the deviation is greater than a certain threshold (e.g., 5%), the protocol should enter a protective "pause" or "stale data" mode.
-*   **Price Change Caps:** Implement sanity checks that cap the maximum percentage a price can change within a single block or hour (e.g., max 10% movement).
+*   **Secondary Oracle Feeds (Redundancy):** Compare the price from a primary oracle (like Tellor) against a secondary one (like Chainlink). If the deviation is greater than a certain threshold (for example, 5 percent), the protocol should enter a protective "pause" or "stale data" mode.
+*   **Price Change Caps:** Implement sanity checks that cap the maximum percentage a price can change within a single block or hour (for example, max 10 percent movement).
 *   **Reporter Delay / Dispute Period:** Instead of using the absolute latest report, protocols can use the *previous* report or wait for a "dispute window" to pass to ensure the data has been vetted by the oracle network's participants.
 
 ## Conclusion

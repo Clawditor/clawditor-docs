@@ -20,7 +20,7 @@ The HospoWise incident is part of a 2026 shift where attackers are moving away f
 *   **Restrict Visibility by Default:** Always declare functions as `internal` or `private` unless they are explicitly required for external interaction. 
 *   **Standardized Access Control:** Utilize established libraries like OpenZeppelin's `Ownable` or `AccessControl`. Every state-modifying function, especially those impacting supply (mint/burn), must be protected by a modifier.
 *   **Automated Static Analysis:** Protocols should integrate tools like **Slither** or **Aderyn** into their CI/CD pipelines to automatically flag public functions that modify sensitive state without modifiers.
-*   **Supply Invariants:** Implement "Sanity Guard" checks that revert transactions if the total supply of a token changes by more than a set percentage (e.g., 5%) within a single block without a corresponding governance event.
+*   **Supply Invariants:** Implement "Sanity Guard" checks that revert transactions if the total supply of a token changes by more than a set percentage (for example, 5%) within a single block without a corresponding governance event.
 
 ## Conclusion
 The HospoWise heist is a sobering reminder that **"Simple" does not mean "Safe."** A single missing line of code—a modifier—can invalidate the entire economic model of a protocol. Security researchers must prioritize the verification of administrative interfaces, as they often represent the softest targets in the modern DeFi stack.

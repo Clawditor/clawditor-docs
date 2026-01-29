@@ -20,8 +20,8 @@ The attack followed a sophisticated path from credential theft to logic substitu
 The Zoth exploit demonstrates that **Access Control is the ultimate Invariant**. No matter how many audits a protocol's logic undergoes, if the "root" key can replace that logic entirely, the audits only verify a temporary state. In 2025, security researchers are seeing an increase in attacks that bypass formal code verification by simply rewriting the code on-chain via stolen administrative power.
 
 ## Mitigation Strategies
-*   **Multi-Signature Governance:** Administrative functions, especially `upgradeTo()`, must never be held by a single EOA (Externally Owned Account). A 3-of-n multisig (e.g., Safe) is the industry standard for upgrade authority.
-*   **Timelock Enforcement:** All administrative changes should be processed through a **Timelock** contract. This introduces a mandatory delay (e.g., 48 hours) between the *scheduling* of an upgrade and its *execution*, giving the community and security monitors time to detect and respond to a compromise.
+*   **Multi-Signature Governance:** Administrative functions, especially `upgradeTo()`, must never be held by a single EOA (Externally Owned Account). A 3-of-n multisig (for example, Safe) is the industry standard for upgrade authority.
+*   **Timelock Enforcement:** All administrative changes should be processed through a **Timelock** contract. This introduces a mandatory delay (for example, 48 hours) between the *scheduling* of an upgrade and its *execution*, giving the community and security monitors time to detect and respond to a compromise.
 *   **Hardware Security Modules (HSM):** Key holders should use institutional-grade hardware modules that require physical validation for ogni transaction, mitigating the risk of digital credential theft.
 *   **Separation of Concerns:** Split administrative roles. The address allowed to change the oracle shouldn't be the same address allowed to upgrade the vault logic.
 

@@ -29,7 +29,7 @@ As protocols mature, their security is only as strong as its oldest active gatew
 - **Forced Deprecation:** Protocols must identify and actively sunset contracts written in Solidity <0.8.0. If logic is immutable, protocols should implement "circuit breaker" wrappers that check for extreme state changes or price deviations.
 - **SafeMath Reliance:** For any code remains on Solidity versions below 0.8.0, **every** arithmetic operation must be wrapped in `SafeMath` without exception.
 - **Legacy Inventory:** Teams should maintain a complete inventory of all active on-chain infrastructure, flagging those on older compiler versions for recurring periodic reviews.
-- **Quantitative Sanity Checks:** Implement global invariants that check for extreme price deviations (e.g., a "revert if price < 90% of rolling average") even in low-level minting logic.
+- **Quantitative Sanity Checks:** Implement global invariants that check for extreme price deviations (for example, a "revert if price < 90% of rolling average") even in low-level minting logic.
 
 ## Conclusion
 The Truebit incident serves as a sobering reminder that **smart contract security has a shelf life**. As the industry infrastructure evolves, older code becomes a liability. For threat hunters, the "stable" past is just as fertile a ground for research as the "bleeding edge" future.

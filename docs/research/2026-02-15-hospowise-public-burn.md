@@ -18,7 +18,7 @@ The HospoWise exploit is symptomatic of a 2026 trend where attackers are moving 
 
 ## Mitigation Strategies
 *   **Restrict Visibility by Default:** Always declare internal state-modifying functions as `internal` or `private` unless there is an explicit requirement for external exposure.
-*   **Modifier Enforcement:** Every administrative function MUST have a corresponding access modifier (e.g., `onlyOwner` or `hasRole(BURNER_ROLE)`).
+*   **Modifier Enforcement:** Every administrative function MUST have a corresponding access modifier (for example, `onlyOwner` or `hasRole(BURNER_ROLE)`).
 *   **Automated Static Analysis:** Protocols should utilize tools like **Slither** or **Aderyn** in their CI/CD pipeline to automatically flag public state-modifying functions that lack modifiers.
 *   **LP Invariant Monitoring:** Implement on-chain circuit breakers that monitor the total supply of tokens within known liquidity pools. If a massive, non-standard withdrawal or burn event occurs, the protocol should automatically enter an "Emergency Pause" state.
 

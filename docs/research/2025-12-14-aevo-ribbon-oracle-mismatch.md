@@ -20,7 +20,7 @@ The attacker leveraged a logic error where the protocol's internal accounting as
 The Aevo incident highlights the **ongoing liability of legacy infrastructure**. Even when a project moves on to a new product (Aevo exchange), the old contracts (Ribbon vaults) sitting on-chain with liquidity remain active surfaces. Security audits for the "new" product often overlook the maintenance scripts and upgrades applied to "old" but vital components.
 
 ## Mitigation Strategies
-- **Normalization Invariants:** Never assume the decimal precision of an oracle. Always use a decorator or wrapper that explicitly normalizes all outputs to a fixed internal precision (e.g., `WAD` 18 decimals) before performing calculations.
+- **Normalization Invariants:** Never assume the decimal precision of an oracle. Always use a decorator or wrapper that explicitly normalizes all outputs to a fixed internal precision (for example, `WAD` 18 decimals) before performing calculations.
 - **Upgrade Regression Testing:** Upgrades to core components like oracles must be tested against the state of *every* dependent contract, including legacy ones. Using a mainnet fork to simulate the upgrade and subsequent user actions is essential.
 - **Semantic Monitoring:** Implement monitoring that flags "extreme price sudden shifts" or "internal valuation mismatches." If the total value of assets in a vault changes by a significant percentage immediately following an administrative upgrade, the protocol should enter an automated failsafe.
 - **Sunset Strategy:** Projects should have a proactive plan to fully sunset and migrate users off legacy infrastructure once a transition is complete, rather than maintaining multiple logic versions on-chain indefinitely.

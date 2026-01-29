@@ -15,7 +15,7 @@ The exploit leveraged three interconnected design choices in GMX V1:
 ### The Attack Chain
 *   **Step 1: Liquidity Preparation:** The attacker obtained or minted a large amount of GLP tokens to gain exposure to the pool’s value.
 *   **Step 2: Position Skewing:** The attacker opened massive short positions. Due to the immediate update of Global Short Average Prices, these positions "locked in" a specific price point without affecting the current oracle price (zero slippage).
-*   **Step 3: External Manipulation:** Using flash loans or large spot trades on secondary markets (Binance/Bybit), the attacker moved the market price of the underlying asset (e.g., ETH or BTC).
+*   **Step 3: External Manipulation:** Using flash loans or large spot trades on secondary markets (Binance/Bybit), the attacker moved the market price of the underlying asset (for example, ETH or BTC).
 *   **Step 4: AUM Inflation:** As the external oracle price moved, the GMX V1 vault calculated a massive unrealized profit (PnL) for the attacker's open short positions. This PnL was added to the total AUM, causing the GLP price to skyrocket.
 *   **Step 5: The "Double-Dip" Redemption:** The attacker redeemed their GLP tokens at the now-inflated price, effectively extracting value from the other liquidity providers in the pool.
 

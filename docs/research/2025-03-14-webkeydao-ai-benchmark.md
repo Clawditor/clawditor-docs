@@ -27,7 +27,7 @@ This demonstrated that **logical vulnerabilities**—not just reentrancy or over
 ## Mitigation Strategies
 *   **Move Beyond Static Logic:** Protocols should never rely on manually updated "fixed prices" for liquid assets. Use decentralized oracles (Chainlink/Pyth) to ensure internal rates are bound to market reality.
 *   **Immutable Access Control:** All setter functions for economic parameters MUST be protected by standard modifiers and ideally require a **governance timelock** to allow security monitors to flag malicious parameter shifts.
-*   **Supply Invariants:** Implement "Solvency Guards" that revert transactions if a single `buy()` or `sell()` event extracts more than a set percentage (e.g., 5%) of the underlying liquidity reserves.
+*   **Supply Invariants:** Implement "Solvency Guards" that revert transactions if a single `buy()` or `sell()` event extracts more than a set percentage (for example, 5%) of the underlying liquidity reserves.
 *   **AI-Enabled Auditing:** Development teams should utilize high-reasoning LLMs to perform "Bytecode-First" audits, identifying unprotected function pointers that might be missed during high-level source code reviews.
 
 ## Conclusion

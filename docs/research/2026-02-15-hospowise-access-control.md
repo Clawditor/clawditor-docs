@@ -18,7 +18,7 @@ The HospoWise exploit is part of a 2026 trend where attackers are moving away fr
 
 ## Mitigation Strategies
 *   **Explicit Visibility:** Always default to `internal` or `private` for functions that modify state. Only elevate to `public`/`external` when absolutely necessary for user interaction.
-*   **Modifier Enforcement:** Every administrative function must have a corresponding access modifier (e.g., `onlyOwner` or `hasRole(BURNER_ROLE)`).
+*   **Modifier Enforcement:** Every administrative function must have a corresponding access modifier (for example, `onlyOwner` or `hasRole(BURNER_ROLE)`).
 *   **Static Analysis Integration:** Basic static analysis tools like Slither would have flagged a public state-modifying function with no modifiers. Protocols must integrate these tools into their deployment pipelines.
 *   **Supply Invariants:** Implement circuit breakers that monitor total supply changes. If a massive percentage of the supply is burned within a single block without a corresponding administrative event, the protocol should automatically enter an "Emergency Pause" state.
 

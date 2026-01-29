@@ -21,7 +21,7 @@ Instead of manipulating a market (like a typical flash loan oracle attack), the 
 The Typus Finance incident highlights the recurring danger of **Homegrown Oracles**. While the Move language provides built-in safety features like resource-oriented programming to prevent reentrancy and unauthorized asset burning, it cannot prevent flawed business logic. If the "source of truth" (the oracle) is vulnerable, the entire security of the protocol collapses, regardless of the underlying language safety.
 
 ## Mitigation Strategies
-*   **Redundant Oracles:** Critical DeFi components should aggregate data from multiple independent oracles (e.g., Pyth, Switchboard, Chainlink) rather than relying on a single custom module.
+*   **Redundant Oracles:** Critical DeFi components should aggregate data from multiple independent oracles (for example, Pyth, Switchboard, Chainlink) rather than relying on a single custom module.
 *   **Permission Enforcement:** Use the Move language's `signer` or `Capability` patterns to strictly enforce that ONLY authorized oracle providers can update price data.
 *   **Invariant Sanity Checks:** Implement "circuit breakers" that compare the provided oracle price against a safe price range (percentage change over time) or a fallback oracle.
 *   **Formal Verification of Access Control:** Use the Move Prover to formally verify that critical state-changing functions (like price updates) can only be accessed by the intended accounts.

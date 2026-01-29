@@ -19,7 +19,7 @@ The attacker bridged the gap between a temporary economic advantage and permanen
 This exploit underscores a critical architectural weakness: **Real-time consensus weighting based on volatile governance tokens.** By allowing a validator's signing authority to be tied to a market asset that can be "borrowed" (via Flash-Loan) or manipulated, the protocol treated an economic state as a trusted security parameter.
 
 ## Mitigation Strategies
-*   **Time-Weighted Staking (TWAP/Locking):** Signing authority should never be calculated based on a spot balance. A "Vesting" or "Locking" period (e.g., 7–14 days) should be required before a stake can contribute to validator weighting.
+*   **Time-Weighted Staking (TWAP/Locking):** Signing authority should never be calculated based on a spot balance. A "Vesting" or "Locking" period (for example, 7–14 days) should be required before a stake can contribute to validator weighting.
 *   **Decoupled Selection:** The governance tokens used for voting should be separate from the cryptographic keys used for signing, with a significant "cooldown" period between a governance change and its effect on consensus.
 *   **Quorum Diversity:** Implement "identity" or "KYC" requirements for a subset of validators to ensure that a single entity cannot sybil-attack the quorum using borrowed funds.
 *   **Threshold Monitoring:** Automated alerts should trigger a bridge "Emergency Stop" if a large percentage of the validator set's backing changes within a single block or epoch.

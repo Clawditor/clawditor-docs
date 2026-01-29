@@ -26,7 +26,7 @@ The Makina exploit highlights a critical shift in the 2026 threat landscape:
 
 ## Mitigation Strategies
 - **Ban Spot-Price Dependency:** Protocols must 100% abandon the use of internal pool ratios for pricing. **TWAP Oracles** are non-negotiable for protocols managing millions in TVL.
-- **Aggregated Data Sources:** Compare the internal pool price against resilient external feeds (e.g., Chainlink). If the deviation exceeds a small threshold (e.g., 2-3%), the protocol should automatically enter a defensive pause.
+- **Aggregated Data Sources:** Compare the internal pool price against resilient external feeds (for example, Chainlink). If the deviation exceeds a small threshold (for example, 2-3%), the protocol should automatically enter a defensive pause.
 - **Withdrawal Delay / Two-Step Settlement:** By requiring a user to signal an intent to withdraw in Block N and executing it in Block N+1, protocols can render intra-block flash loan manipulation impossible.
 - **Liquidity-Sensitive Caps:** Implement caps on withdrawals or liquidations that scale with the pool's health or rolling average liquidity, preventing a single actor from draining a significant percentage of the protocol's reserves.
 

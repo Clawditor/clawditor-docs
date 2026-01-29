@@ -13,7 +13,7 @@ The attacker didn't just re-enter a single function; they used a malicious contr
 3.  **The Malicious Callback:** During the swap, the Orion contract called the `transferFrom` or `transfer` function of the malicious ATK token.
 4.  **Re-entry into `depositAsset`:** Instead of simply returning `true`, the ATK token's code called *back* into the Orion contract's `depositAsset` function.
 5.  **Accounting Deception:**
-    *   The `depositAsset` function updated the attacker's balance for a legitimate asset (e.g., USDT).
+    *   The `depositAsset` function updated the attacker's balance for a legitimate asset (for example, USDT).
     *   Because the original `swapThroughOrionPool` was still executing, the protocol's internal accounting logic was "confused" by the sudden mid-execution state change.
     *   The final calculation of the swap results used the newly "deposited" (but fake) balance, allowing the attacker to credit themselves with more assets than they actually provided.
 

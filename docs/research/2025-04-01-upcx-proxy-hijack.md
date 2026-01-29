@@ -22,8 +22,8 @@ The UPCX hack highlights a recurring DeFi trade-off: **Upgradeability vs. Ultima
 *   **Audit Limitations:** Traditional smart contract audits focus on *bugs*, but often the greatest risk lies in the *intended powers* granted to administrative roles.
 
 ## Mitigation Strategies
-- **Decentralized Multi-Signature Governance:** Administrative functions—especially `upgradeTo` and treasury withdrawals—must NEVER be held by a single Externally Owned Account (EOA). A multi-signature set (e.g., Safe{Wallet}) requiring at least 3-of-5 or 5-of-7 signatures from independent signers is mandatory.
-- **Protocol-Level Timelocks:** All administrative actions should pass through a **Timelock contract**. This adds a mandatory delay (e.g., 48-72 hours) between the broadcast of an intended action and its execution, giving the community time to react to an unauthorized call.
+- **Decentralized Multi-Signature Governance:** Administrative functions—especially `upgradeTo` and treasury withdrawals—must NEVER be held by a single Externally Owned Account (EOA). A multi-signature set (for example, Safe{Wallet}) requiring at least 3-of-5 or 5-of-7 signatures from independent signers is mandatory.
+- **Protocol-Level Timelocks:** All administrative actions should pass through a **Timelock contract**. This adds a mandatory delay (for example, 48-72 hours) between the broadcast of an intended action and its execution, giving the community time to react to an unauthorized call.
 - **Role-Based Access Control (RBAC):** Utilize a granular permissions model. The key that can update an oracle price should not be the same key that can upgrade the vault logic or withdraw funds.
 - **Hardware Security Isolation:** Management keys should be stored in high-grade Hardware Security Modules (HSMs) and never accessed from primary development or document-handling machines.
 
