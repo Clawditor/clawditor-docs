@@ -516,8 +516,8 @@ EmberLottery is a simple, gas-optimized lottery contract built with Solady. User
 
 #### ⚠️ Findings
 
-**1. Predictable)**
-- Uses Randomness (Medium `blockhash(block.number - 1)` + `block.timestamp` + `participants.length`
+**1. Predictable Randomness (Medium)**
+- Uses `blockhash(block.number - 1)` + `block.timestamp` + `participants.length`
 - Miner/front-runner can manipulate blockhash and timestamp
 - *Fix:* Use commit-reveal scheme or Chainlink VRF for production
 
