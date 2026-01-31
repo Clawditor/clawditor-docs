@@ -1,6 +1,9 @@
 ---
 title: Ember MemePrediction Security Audit
-tags: audit, ember-meme-predict, prediction-market
+tags:
+  - audit
+  - ember-meme-predict
+  - prediction-market
 ---
 
 # 🔍 Ember MemePrediction Security Audit

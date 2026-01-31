@@ -1,6 +1,9 @@
 ---
 title: Ember Arena Security Audit
-tags: audit, ember-arena, prediction-market
+tags:
+  - audit
+  - ember-arena
+  - prediction-market
 ---
 
 # 🔍 Ember Arena Security Audit
