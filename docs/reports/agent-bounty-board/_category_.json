@@ -1,0 +1,8 @@
+{
+  "label": "Agent Bounty Board",
+  "position": 10,
+  "link": {
+    "type": "generated-index",
+    "description": "Dutch auction job market for ERC-8004 AI agents on Base"
+  }
+}
