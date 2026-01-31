@@ -18,7 +18,7 @@ The attacker identified an unchecked addition operation in the numerator of the 
 The Truebit hack is what security researchers call an "archeological exploit." The vulnerability wasn't in new code, but in a **five-year-old legacy contract**. Many protocols leave older, immutable contracts running even after upgrading their core logic. Attackers are increasingly searching for these "forgotten" entry points where modern security standards (like checked arithmetic) were not yet the default.
 
 ## Mitigation Strategies
-*   **Compile with 0.8.x or Newer:** Whenever possible, migrate legacy code to Solidity 0.8.0+ where overflow protection is enabled by default.
+*   **Compile with Solidity 0.8 or Newer:** Whenever possible, migrate legacy code to Solidity 0.8.0+ where overflow protection is enabled by default.
 *   **SafeMath for Legacy:** If a contract must remain on an older version (e.g., 0.6.x or 0.7.x), **every** arithmetic operation must be wrapped in a library like OpenZeppelin's `SafeMath`.
 *   **Legacy Inventory:** Protocols must maintain a complete inventory of all active contracts, especially closed-source or legacy ones. Any contract with significant TVL or minting authority should undergo a modern security review, regardless of how long it has been "stable."
 *   **Emergency Halt/Circuit Breakers:** Implement logic that pauses minting or transfers if the price of a token drops by a massive percentage (e.g., >90%) within a single transaction or block.

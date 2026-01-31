@@ -1,12 +1,12 @@
-# Bybit Cold Wallet Heist: The $1.4B Safe{Wallet} Supply Chain Attack (February 2025)
+# Bybit Cold Wallet Heist: The $1.4B SafeWallet Supply Chain Attack (February 2025)
 
-On February 21, 2025, Bybit suffered the largest cryptocurrency theft in history, with over **$1.4 billion** (401,347 ETH) drained from its Ethereum cold wallet. The attack, attributed to North Korea's Lazarus Group, did not exploit a smart contract vulnerability or private key compromise. Instead, it represented a **sophisticated supply chain attack** that manipulated the Safe{Wallet} web interface to deceive signers into approving malicious transactions.
+On February 21, 2025, Bybit suffered the largest cryptocurrency theft in history, with over **$1.4 billion** (401,347 ETH) drained from its Ethereum cold wallet. The attack, attributed to North Korea's Lazarus Group, did not exploit a smart contract vulnerability or private key compromise. Instead, it represented a **sophisticated supply chain attack** that manipulated the SafeWallet web interface to deceive signers into approving malicious transactions.
 
 ## Executive Summary
 
 The Bybit heist represents a watershed moment in crypto security, demonstrating that even the most secure cold wallet infrastructure can be compromised through **off-chain attack vectors**. The attackers:
 
-1. Compromised a developer's machine to inject malicious JavaScript into Safe{Wallet}
+1. Compromised a developer's machine to inject malicious JavaScript into SafeWallet
 2. Modified transaction data in transit, showing signers a benign transfer while requesting approval for a wallet ownership takeover
 3. Exploited the `delegatecall` mechanism to replace the Safe implementation contract
 4. Executed a sophisticated fund dispersal operation across multiple chains
@@ -17,9 +17,9 @@ The attack cost exceeds the combined total of the next four largest DeFi hacks, 
 
 ### The Attack Vector
 
-Unlike traditional crypto hacks that target smart contract code or private keys, the Bybit attack exploited the **web application layer** of Safe{Wallet}, a widely-used multisig wallet solution. The attack chain:
+Unlike traditional crypto hacks that target smart contract code or private keys, the Bybit attack exploited the **web application layer** of SafeWallet, a widely-used multisig wallet solution. The attack chain:
 
-1. **Supply Chain Compromise**: Attacker gained access to a Safe{Wallet} developer's machine
+1. **Supply Chain Compromise**: Attacker gained access to a SafeWallet developer's machine
 2. **JavaScript Injection**: Malicious code injected into the production JavaScript bundle
 3. **Transaction Tampering**: Code specifically targeted Bybit signers, modifying transaction data before signing
 4. **Signature Manipulation**: Signers approved a benign transaction but actually authorized a wallet ownership change
@@ -33,7 +33,7 @@ Unlike traditional crypto hacks that target smart contract code or private keys,
 - **Status**: Largest crypto theft in history
 - **Attribution**: North Korea's Lazarus Group (confirmed by FBI, Feb 26, 2025)
 
-## The Safe{Wallet} Architecture
+## The SafeWallet Architecture
 
 ### Multisig Wallet Structure
 
@@ -234,7 +234,7 @@ Blockchain analytics firms (Arkham, Elliptic, TRM Labs) and the FBI confirmed No
 3. **Blind Signing**
    - Signers approved transactions without understanding full implications
    - Hardware wallets lacking EIP-712 support showed no meaningful data
-   - Trust in Safe{Wallet} interface without independent verification
+   - Trust in SafeWallet interface without independent verification
 
 4. **Excessive Functionality**
    - Safe's `delegatecall` capability for arbitrary contracts
@@ -341,7 +341,7 @@ The Bybit hack accelerated regulatory scrutiny:
 
 ### Market Impact
 
-- **Safe{Wallet} Reputation**: Significant trust damage for leading multisig solution
+- **SafeWallet Reputation**: Significant trust damage for leading multisig solution
 - **Hardware Wallet Adoption**: Increased demand for devices with EIP-712 support
 - **Insurance Products**: Rising premiums for exchange custody coverage
 

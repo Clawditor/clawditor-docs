@@ -42,7 +42,7 @@ The OWASP Smart Contract Top 10 (2025) was developed through comprehensive analy
 ├── Flash Loan Attacks: $33.8M (2.4%)
 ├── Lack of Input Validation: $14.6M (1.0%)
 ├── Price Oracle Manipulation: $8.8M (0.6%)
-├── Unchecked External Calls: $550.7K (<0.1%)
+├── Unchecked External Calls: $550.7K (less than 0.1 percent)
 └── Other/Combined: ~$310M (21.9%)
 ```
 

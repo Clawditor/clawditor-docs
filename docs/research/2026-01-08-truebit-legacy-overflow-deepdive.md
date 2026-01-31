@@ -29,7 +29,7 @@ The Truebit hack is what security researchers categorize as an **"Archeological 
 As protocols mature, their security is only as strong as their oldest active gateway. Attackers in 2026 are increasingly specializing in auditing historically "stable" but under-secured contracts that predate modern security standards like compiler-level checked arithmetic.
 
 ## Mitigation Strategies
-- **Forced Deprecation:** Protocols must identify and actively sunset contracts written in Solidity <0.8.0. If logic is immutable, protocols should implement "circuit breaker" wrappers that check for extreme state changes or price deviations.
+- **Forced Deprecation:** Protocols must identify and actively sunset contracts written in Solidity pre-Solidity 0.8.0. If logic is immutable, protocols should implement "circuit breaker" wrappers that check for extreme state changes or price deviations.
 - **Safemath Reliance:** For any code that remains on Solidity versions below 0.8.0, **every** arithmetic operation must be wrapped in `SafeMath` without exception.
 - **Legacy Inventory:** Teams should maintain a complete inventory of all active on-chain infrastructure, flagging those on older compiler versions for recurring periodic reviews.
 - **Quantitative Sanity Checks:** Implement global invariants that check for extreme price deviations (e.g., a "revert if price < 90% of rolling average") even in low-level minting logic.

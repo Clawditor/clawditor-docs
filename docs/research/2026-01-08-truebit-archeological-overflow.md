@@ -20,9 +20,9 @@ The Truebit exploit is a premier example of **Archeological Vulnerability Resear
 In 2026, attackers are increasingly ignoring audited "front-end" contracts to search for these forgotten legacy entry points. A protocol's security is only as strong as its oldest active gateway.
 
 ## Mitigation Strategies
-*   **Version Force-Upgrades:** Protocols must systematically migrate or deprecate any contract written in Solidity <0.8.0. If logic is immutable, utilize "circuit breaker" wrappers to monitor state changes.
+*   **Version Force-Upgrades:** Protocols must systematically migrate or deprecate any contract written in Solidity pre-Solidity 0.8.0. If logic is immutable, utilize "circuit breaker" wrappers to monitor state changes.
 *   **Safemath Guardians:** If legacy code must be maintained, perform a "bytecode audit" to ensure **every** arithmetic operation is wrapped in verified `SafeMath`.
-*   **Quantitative Monitoring:** Implement invariant checks that monitor token supply-to-reserve ratios. If a transaction attempts to mint tokens at >90% deviation from the rolling average price, the call should auto-revert.
+*   **Quantitative Monitoring:** Implement invariant checks that monitor token supply-to-reserve ratios. If a transaction attempts to mint tokens at > ninety percent deviation from the rolling average price, the call should auto-revert.
 *   **Periodic Decompilation:** Security teams should periodically run modern decompilers and symbolic execution tools against *legacy* bytecode to identify flaws that might have been invisible during the initial audit years prior.
 
 ## Conclusion

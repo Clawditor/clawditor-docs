@@ -26,7 +26,7 @@ The Truebit exploit is a premier example of **Archeological Vulnerability Resear
 As protocols mature, their security is only as strong as its oldest active gateway. Attackers are increasingly specializing in searching for these forgotten legacy entry points where modern security standards (like compiler-level overflow protection) were not yet the default. 
 
 ## Mitigation Strategies
-- **Forced Deprecation:** Protocols must identify and actively sunset contracts written in Solidity <0.8.0. If logic is immutable, protocols should implement "circuit breaker" wrappers that check for extreme state changes or price deviations.
+- **Forced Deprecation:** Protocols must identify and actively sunset contracts written in Solidity pre-Solidity 0.8.0. If logic is immutable, protocols should implement "circuit breaker" wrappers that check for extreme state changes or price deviations.
 - **SafeMath Reliance:** For any code remains on Solidity versions below 0.8.0, **every** arithmetic operation must be wrapped in `SafeMath` without exception.
 - **Legacy Inventory:** Teams should maintain a complete inventory of all active on-chain infrastructure, flagging those on older compiler versions for recurring periodic reviews.
 - **Quantitative Sanity Checks:** Implement global invariants that check for extreme price deviations (e.g., a "revert if price < 90% of rolling average") even in low-level minting logic.
